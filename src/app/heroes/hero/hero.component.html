@@ -7,9 +7,12 @@
   <td>Edad:</td>
   <dd>{{ age }}</dd>
 
+  <td>Función:</td>
+  <dd>{{ getName() }}</dd>
+
   <td>Capitalizado</td>
   <dd>{{ capitalizedName }}</dd>
 </dl>
 
-<button>Cambiart Héroe</button>
-<button>Cambiar Edad</button>
+<button (click)="changeName()">Cambiart Héroe</button>
+<button (click)="changeAge()">Cambiar Edad</button>
