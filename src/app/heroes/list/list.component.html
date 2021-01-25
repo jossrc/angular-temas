@@ -1,11 +1,15 @@
-<div>
+<div *ngIf="deletedHeroes.length > 0; else noDeleted">
   <h3>Héroes Borrados</h3>
   <ul>
     <li *ngFor="let heroe of deletedHeroes">{{ heroe }}</li>
   </ul>
 </div>
 
-<div>
+<ng-template #noDeleted>
+  <h3>Ningún heroe a sido borrado</h3>
+</ng-template>
+
+<div *ngIf="heroes.length > 0">
   <h3>Listado de Héroes</h3>
 
   <ul>
