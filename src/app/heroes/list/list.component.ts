@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html'
+  templateUrl: './list.component.html',
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
+  heroes: string[] = ['Spiderman', 'Ironman', 'Hulk', 'Thor'];
+  deletedHeroes: string[] = [];
 
-  constructor() { }
+  deleteLastHero = (): void => {
+    const deletedHero = this.heroes.pop();
 
-  ngOnInit(): void {
-  }
-
+    if (deletedHero) this.deletedHeroes.push(deletedHero);
+  };
 }

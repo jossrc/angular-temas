@@ -1,1 +1,18 @@
-<p>list works!</p>
+<div>
+  <h3>Héroes Borrados</h3>
+  <ul>
+    <li *ngFor="let heroe of deletedHeroes">{{ heroe }}</li>
+  </ul>
+</div>
+
+<div>
+  <h3>Listado de Héroes</h3>
+
+  <ul>
+    <li *ngFor="let heroe of heroes; let i = index">
+      {{ i }} &#8594; {{ heroe }}
+    </li>
+  </ul>
+
+  <button (click)="deleteLastHero()">Borrar</button>
+</div>
