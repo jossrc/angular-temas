@@ -1,10 +1,10 @@
 <h1>Dragon Ball Z</h1>
-<hr>
+<hr />
 
 <div class="row">
   <div class="col">
     <h3>Personajes</h3>
-    <hr>
+    <hr />
     <ul>
       <li>Krillin - 700</li>
       <li>Goku - 15 000</li>
@@ -13,11 +13,11 @@
   </div>
   <div class="col">
     <h3>Agregar</h3>
-    <hr>
-    <form action="">
-      <input type="text" placeholder="Nombre">
-      <input type="number" placeholder="Poder">
-      <button>Agregar</button>
+    <hr />
+    <form (submit)="add( $event )">
+      <input type="text" placeholder="Nombre" />
+      <input type="number" placeholder="Poder" />
+      <button type="submit">Agregar</button>
     </form>
   </div>
 </div>
