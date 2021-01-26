@@ -12,11 +12,28 @@
     </ul>
   </div>
   <div class="col">
-    <h3>Agregar</h3>
+    <h3>
+      Agregar <small>{{ newCharacter.name }}</small>
+    </h3>
     <hr />
     <form (ngSubmit)="add()">
-      <input type="text" placeholder="Nombre" />
-      <input type="number" placeholder="Poder" />
+      <input
+        type="text"
+        placeholder="Nombre"
+        name="name"
+        [(ngModel)]="newCharacter.name"
+      />
+      <!--
+        [value]="newCharacter.name"
+        (input)="changeName($event)"
+      -->
+
+      <input
+        type="number"
+        placeholder="Poder"
+        name="power"
+        [(ngModel)]="newCharacter.power"
+      />
       <button type="submit">Agregar</button>
     </form>
   </div>
