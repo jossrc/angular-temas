@@ -6,9 +6,8 @@ import { Component } from '@angular/core';
 })
 export class MainPageComponent {
 
-  add = (event: any) => {
-    event.preventDefault()
-    console.log(event);
+  add = () => {
+    console.log("Esta es una prueba");
   }
 
 }
