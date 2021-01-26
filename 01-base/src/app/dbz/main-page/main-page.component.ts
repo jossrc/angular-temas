@@ -18,4 +18,8 @@ export class MainPageComponent {
     power: 0,
   };
 
+  addNewCharacter = (eventCharacter : Character) => {
+    this.characters.push(eventCharacter)
+  }
+
 }
