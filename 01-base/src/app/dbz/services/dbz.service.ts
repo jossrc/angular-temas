@@ -10,10 +10,6 @@ export class DbzService {
     { name: 'Vegeta', power: 14000 },
   ];
 
-  constructor() {
-    console.log('Servicio Inicializado');
-  }
-
   /**
    * Retorna un arreglo de todos los personajes de DBZ.
    * Además evita el manejo y la relación de los objetos por referencia
@@ -22,5 +18,10 @@ export class DbzService {
     return [...this._characters];
   }
 
+  constructor() {}
+
+  addNewCharacter = ( character: Character ) => {
+    this._characters.push(character)
+  }
 
 }
