@@ -13,13 +13,6 @@ export class MainPageComponent {
     power: 0,
   };
 
-  constructor(private dbzService: DbzService) {}
+  constructor() {}
 
-  get characters(): Character[] {
-    return this.dbzService.characters
-  }
-
-  addNewCharacter = (eventCharacter: Character) => {
-    this.characters.push(eventCharacter);
-  };
 }
