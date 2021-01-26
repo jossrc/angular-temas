@@ -6,6 +6,7 @@ import { Character } from '../interfaces/dbz.interface';
   templateUrl: './main-page.component.html',
 })
 export class MainPageComponent {
+
   characters: Character[] = [
     { name: 'Goku', power: 15000 },
     { name: 'Krillin', power: 700 },
@@ -17,19 +18,4 @@ export class MainPageComponent {
     power: 0,
   };
 
-  addNewCharacter = () => {
-    if (this.newCharacter.name.trim().length === 0) {
-      return;
-    }
-
-    this.characters.push(this.newCharacter);
-    this.newCharacter = {
-      name: '',
-      power: 0,
-    };
-  };
-
-  changeName = (event: any) => {
-    console.log(event.target.value);
-  };
 }

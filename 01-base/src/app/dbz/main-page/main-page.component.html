@@ -6,24 +6,6 @@
     <app-characters [characterData]="characters"></app-characters>
   </div>
   <div class="col">
-    <h3>
-      Agregar <small>{{ newCharacter.name }}</small>
-    </h3>
-    <hr />
-    <form (ngSubmit)="addNewCharacter()">
-      <input
-        type="text"
-        placeholder="Nombre"
-        name="name"
-        [(ngModel)]="newCharacter.name"
-      />
-      <input
-        type="number"
-        placeholder="Poder"
-        name="power"
-        [(ngModel)]="newCharacter.power"
-      />
-      <button type="submit">Agregar</button>
-    </form>
+    <app-add-character [characters]="characters" [newCharacter]="newCharacter" ></app-add-character>
   </div>
 </div>
