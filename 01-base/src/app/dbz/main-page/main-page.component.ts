@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { Character } from '../interfaces/dbz.interface';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
 })
 export class MainPageComponent {
+
+  constructor(private dbzService: DbzService) {}
 
   characters: Character[] = [
     { name: 'Goku', power: 15000 },
@@ -18,8 +21,7 @@ export class MainPageComponent {
     power: 0,
   };
 
-  addNewCharacter = (eventCharacter : Character) => {
-    this.characters.push(eventCharacter)
-  }
-
+  addNewCharacter = (eventCharacter: Character) => {
+    this.characters.push(eventCharacter);
+  };
 }
