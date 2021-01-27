@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { GifsService } from '../services/gifs.service';
 
 @Component({
   selector: 'app-search',
@@ -6,22 +7,18 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class SearchComponent {
 
-  /*referencia local # */
-  // #txtSearch == document.querySelector('input') parecido
-  // Puede usar como argumento en el (keyup.enter) = method(txtSearch)
+  @ViewChild('txtSearch')
+  txtSearch!: ElementRef<HTMLInputElement>;
 
+  constructor( private gifsService: GifsService ) {
 
-  /* Non-null assertion operator !: */
+  }
 
-  @ViewChild('txtSearch') txtSearch!: ElementRef<HTMLInputElement>;
+  searchGifs = ( ) => {
 
-  searchGifs = ( contentSearch: string ) => {
+    const { value } = this.txtSearch.nativeElement;
 
-    //const value = this.txtSearch.nativeElement.value
-
-    console.log(contentSearch);
-    console.log(this.txtSearch);
-    //console.log(value);
+    this.gifsService.searchGifs(value)
 
     this.txtSearch.nativeElement.value = ''
   }
