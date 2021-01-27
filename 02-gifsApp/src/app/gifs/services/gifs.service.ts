@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class GifsService {
   private _history: string[] = [];
 
+
   /**
    * Retorna un arreglo de todas las busquedas realizadas
    */
@@ -21,7 +22,7 @@ export class GifsService {
    * @param query Valor a buscar
    */
   searchGifs = (query: string) => {
-    query = query.toLowerCase();
+    query = query.trim().toLowerCase();
     if (!this._history.includes(query)) {
       this._history.unshift(query);
     }
