@@ -3,25 +3,23 @@ import { GifsService } from '../services/gifs.service';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html'
+  templateUrl: './search.component.html',
 })
 export class SearchComponent {
-
   @ViewChild('txtSearch')
   txtSearch!: ElementRef<HTMLInputElement>;
 
-  constructor( private gifsService: GifsService ) {
+  constructor(private gifsService: GifsService) {}
 
-  }
+  searchGifs = () => {
+    const value = this.txtSearch.nativeElement.value.trim();
 
-  searchGifs = ( ) => {
+    if (value.length === 0) {
+      return;
+    }
 
-    const { value } = this.txtSearch.nativeElement;
+    this.gifsService.searchGifs(value);
 
-    this.gifsService.searchGifs(value)
-
-    this.txtSearch.nativeElement.value = ''
-  }
-
-
+    this.txtSearch.nativeElement.value = '';
+  };
 }

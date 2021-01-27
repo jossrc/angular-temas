@@ -6,9 +6,11 @@ import { GifsService } from '../../gifs/services/gifs.service';
   templateUrl: './sidebar.component.html',
 })
 export class SidebarComponent implements OnInit {
-
+  /**
+   * Retorna los diez últimas búsquedas realizadas
+   */
   get history(): string[] {
-    return this.gifsService.history;
+    return this.gifsService.history.splice(0, 10);
   }
 
   constructor(private gifsService: GifsService) {}
