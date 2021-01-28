@@ -8,7 +8,7 @@ import { SearchGifsResponse, Gif } from '../interface/gifs.interface';
 export class GifsService {
   private _history: string[] = [];
   private _url: string = 'https://api.giphy.com/v1/gifs';
-  private _apiKey: string = '';
+  private _apiKey: string = 'YOUR_GIPHY_API_KEY';
 
   /**
    * Retorna los primeros diez datos obtenidos en la busqueda.
