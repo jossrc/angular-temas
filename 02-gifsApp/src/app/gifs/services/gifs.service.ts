@@ -9,6 +9,12 @@ export class GifsService {
   private _url: string = 'https://api.giphy.com/v1/gifs/search';
   private _apiKey: string = '';
 
+  // TODO: Camabiar el tipo
+  /**
+   * Retorna los primeros diez datos obtenidos en la busqueda.
+   */
+  public dataGifs: any[] = [];
+
   /**
    * Retorna un arreglo de todas las busquedas realizadas
    */
@@ -19,12 +25,16 @@ export class GifsService {
   constructor(private http: HttpClient) {}
 
   /**
-   * Busca un gif mediante la API de Giphy y
-   * lo agrega en la posición inicial del historial de busquedas: `history`
+   * Busca el gif mediante la API de Giphy, cuyo resultado es la
+   * obtención de los diez primeros datos encontrados en ella,
+   * estas se almacenan y se sobreescriben en el `dataGifs` para su uso.
+   *
+   * Adicionalmente la consulta se agrega en la posición inicial
+   * del historial de busquedas: `history`
    * @param query Valor a buscar
    */
   searchGifs = (query: string) => {
-    query = query.trim().toLowerCase();
+    query = query.trim().toLocaleLowerCase();
     if (!this._history.includes(query)) {
       this._history.unshift(query);
     }
@@ -33,8 +43,8 @@ export class GifsService {
 
     this.http.get(fullUrl).subscribe((response: any) => {
       console.log(response.data);
+      this.dataGifs = response.data
     });
 
-    console.log(this._history);
   };
 }
