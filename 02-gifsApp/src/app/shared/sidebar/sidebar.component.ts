@@ -7,10 +7,10 @@ import { GifsService } from '../../gifs/services/gifs.service';
 })
 export class SidebarComponent implements OnInit {
   /**
-   * Retorna los diez últimas búsquedas realizadas
+   * Retorna un arreglo de las diez últimas busquedas realizadas
    */
   get history(): string[] {
-    return this.gifsService.history.splice(0, 10);
+    return this.gifsService.history;
   }
 
   constructor(private gifsService: GifsService) {}

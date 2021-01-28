@@ -6,6 +6,7 @@ import { SearchGifsResponse, Gif } from '../interface/gifs.interface';
   providedIn: 'root',
 })
 export class GifsService {
+
   private _history: string[] = [];
   private _url: string = 'https://api.giphy.com/v1/gifs/search';
   private _apiKey: string = '';
@@ -16,13 +17,16 @@ export class GifsService {
   public dataGifs: Gif[] = [];
 
   /**
-   * Retorna un arreglo de todas las busquedas realizadas
+   * Retorna las diez últimas consultas encontradas en el historial de busquedas
    */
   get history() {
     return [...this._history];
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this._history = JSON.parse(localStorage.getItem('history')!) || []
+    this.dataGifs = JSON.parse(localStorage.getItem('data')!) || []
+  }
 
   /**
    * Busca el gif mediante la API de Giphy, cuyo resultado es la
@@ -35,8 +39,12 @@ export class GifsService {
    */
   searchGifs = (query: string) => {
     query = query.trim().toLocaleLowerCase();
+
     if (!this._history.includes(query)) {
       this._history.unshift(query);
+      this._history = this._history.splice(0,10)
+      localStorage.setItem('history', JSON.stringify(this._history))
+
     }
 
     const fullUrl = `${this._url}?api_key=${
@@ -45,6 +53,9 @@ export class GifsService {
 
     this.http
       .get<SearchGifsResponse>(fullUrl)
-      .subscribe((response) => (this.dataGifs = response.data));
+      .subscribe((response) => {
+        this.dataGifs = response.data
+        localStorage.setItem('data', JSON.stringify(this.dataGifs))
+      });
   };
 }
