@@ -4,23 +4,23 @@ import { CountryService } from '../../services/country.service';
 @Component({
   selector: 'app-by-country',
   templateUrl: './by-country.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class ByCountryComponent {
+  public word: string = '';
+  public errorFound: boolean = false;
 
-  public word: string = ''
-
-  constructor(private countryService: CountryService) {
-
-  }
+  constructor(private countryService: CountryService) {}
 
   searchCountry = () => {
-    console.log(this.word);
-    this.countryService.search(this.word).subscribe( data => {
-      console.log(data);
-    });
-  }
-
-
+    this.errorFound = false;
+    this.countryService.search(this.word).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (err) => {
+        this.errorFound = true;
+      }
+    );
+  };
 }
