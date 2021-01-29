@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Country } from '../interfaces/country.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,9 @@ export class CountryService {
    * el retorno se encuentra como Observable. Adicionalmente, este método utiliza
    * la API de RestCountries, por lo que las busquedas deben estar en ingles.
    */
-  search( country: string): Observable<any> {
+  search( country: string): Observable<Country[]> {
     const url = `${this._apiUrl}/name/${country}`
-    return this.http.get(url);
+    return this.http.get<Country[]>(url);
   }
 
 }
