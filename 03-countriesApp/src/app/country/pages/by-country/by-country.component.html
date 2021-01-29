@@ -1,1 +1,48 @@
-<p>by-country works!</p>
+<h2>Por País</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="searchCountry()" autocomplete="off">
+      <input
+        type="text"
+        name="word"
+        class="form-control"
+        placeholder="Buscar país"
+        [(ngModel)]="word"
+      />
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="alert alert-danger">
+  No se encontró nada con la palabra: {{word}}
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bandera</th>
+          <th>Nombre</th>
+          <th>Población</th>
+          <th>Bandera</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Bandera</td>
+          <td>Nombre</td>
+          <td>12345678</td>
+          <td>
+            <a href="#">Ver más...</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
