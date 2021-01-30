@@ -22,4 +22,15 @@ export class CountryService {
     return this.http.get<Country[]>(url);
   }
 
+  /**
+   * Busca y retorna una lista de Países que coincidan con la busqueda de su
+   * respectiva capital, el retorno se encuentra como Observable.
+   * Adicionalmente, este método utiliza la API de RestCountries,
+   * por lo que las busquedas deben estar en ingles.
+   */
+  searchByCapital( capital: string): Observable<Country[]> {
+    const url = `${this._apiUrl}/capital/${capital}`
+    return this.http.get<Country[]>(url);
+  }
+
 }

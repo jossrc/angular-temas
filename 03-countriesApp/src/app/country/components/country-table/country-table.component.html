@@ -14,7 +14,7 @@
       <td>
         <img [src]="country.flag" [alt]="country.name" class="small-flag" />
       </td>
-      <td>{{ country.name }}</td>
+      <td> {{country.capital}},  {{ country.name }}</td>
       <td>{{ country.population | number }}</td>
       <td>
         <a [routerLink]="['/pais', country.alpha2Code]">Ver más...</a>
