@@ -33,4 +33,13 @@ export class CountryService {
     return this.http.get<Country[]>(url);
   }
 
+  /**
+   * Busca y retorna un País según su Alpha ID. El retorno se encuentra
+   * como Observable.
+   */
+  getCountryByID = (id: string): Observable<Country> => {
+    const url = `${this._apiUrl}/alpha/${id}`
+    return this.http.get<Country>(url);
+  }
+
 }
