@@ -1,13 +1,15 @@
-<h2>Por Capital</h2>
-<hr />
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h2>Por Capital</h2>
+  <hr />
 
-<div class="row">
-  <div class="col">
-    <app-country-input
-      (onEnter)="searchCountryByCapital($event)"
-      (onDebounce)="displaySuggestions($event)"
-      placeholder="Buscar Por Capital"
-    ></app-country-input>
+  <div class="row">
+    <div class="col">
+      <app-country-input
+        (onEnter)="searchCountryByCapital($event)"
+        (onDebounce)="displaySuggestions($event)"
+        placeholder="Buscar Por Capital"
+      ></app-country-input>
+    </div>
   </div>
 </div>
 
@@ -23,4 +25,3 @@
     </div>
   </div>
 </ng-template>
-

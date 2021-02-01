@@ -1,17 +1,19 @@
-<h2>Por País</h2>
-<hr />
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h2>Por País</h2>
+  <hr />
 
-<div class="row">
-  <div class="col">
-    <app-country-input
-      (onEnter)="searchCountry($event)"
-      (onDebounce)="displaySuggestions($event)"
-      placeholder= "Buscar País..."
-    ></app-country-input>
+  <div class="row">
+    <div class="col">
+      <app-country-input
+        (onEnter)="searchCountry($event)"
+        (onDebounce)="displaySuggestions($event)"
+        placeholder="Buscar País..."
+      ></app-country-input>
+    </div>
   </div>
-</div>
 
-<hr />
+  <hr />
+</div>
 <div *ngIf="errorFound; else showTable" class="alert alert-danger">
   No se encontró nada con la palabra: {{ word }}
 </div>
