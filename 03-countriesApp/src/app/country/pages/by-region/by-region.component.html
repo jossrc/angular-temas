@@ -7,13 +7,6 @@
 
 <div class="row">
   <div class="col">
-    <!-- [class.btn-primary]="region === activeRegion" -->
-    <!--
-      [ngClass]="{
-        'btn-primary': region === activeRegion,
-        'btn-outline-primary': region !== activeRegion
-      }"
-    -->
     <button
       [class]="getCSSClass(region)"
       *ngFor="let region of regions"
@@ -21,5 +14,11 @@
     >
       {{ region | titlecase}}
     </button>
+  </div>
+</div>
+
+<div class="row mt-4" *ngIf="countries.length > 0">
+  <div class="col">
+    <app-country-table [countries]="countries"></app-country-table>
   </div>
 </div>
