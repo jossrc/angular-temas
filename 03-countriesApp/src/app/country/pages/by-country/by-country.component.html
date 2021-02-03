@@ -12,6 +12,26 @@
     </div>
   </div>
 
+  <ul
+    *ngIf="activateSuggestions && suggestedCountries.length > 0"
+    class="list-group"
+  >
+    <li
+      *ngFor="let suggestedCounty of suggestedCountries"
+      class="list-group-item list-group-item-action"
+    >
+      <a class="nav-link" [routerLink]="['/pais', suggestedCounty.alpha2Code]">
+        {{ suggestedCounty.name }}
+      </a>
+    </li>
+    <li
+      class="list-group-item list-group-item-action"
+      (click)="searchSuggestions(word)"
+    >
+      <a class="nav-link"> Buscar "{{ word }}" </a>
+    </li>
+  </ul>
+
   <hr />
 </div>
 <div *ngIf="errorFound; else showTable" class="alert alert-danger">

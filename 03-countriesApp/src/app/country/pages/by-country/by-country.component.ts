@@ -5,16 +5,25 @@ import { Country } from '../../interfaces/country.interface';
 @Component({
   selector: 'app-by-country',
   templateUrl: './by-country.component.html',
-  styles: [],
+  styles: [
+    `
+      li {
+        cursor: pointer;
+      }
+    `,
+  ],
 })
 export class ByCountryComponent {
   public word: string = '';
   public errorFound: boolean = false;
-  public countries: Country[] = []
+  public countries: Country[] = [];
+  public activateSuggestions: boolean = false;
+  public suggestedCountries: Country[] = [];
 
   constructor(private countryService: CountryService) {}
 
-  searchCountry = (country: string) => {
+  searchCountry(country: string){
+    this.activateSuggestions = false;
     this.errorFound = false;
     this.word = country;
     this.countryService.search(country).subscribe(
@@ -23,13 +32,23 @@ export class ByCountryComponent {
       },
       (err) => {
         this.errorFound = true;
-        this.countries = []
+        this.countries = [];
       }
     );
   };
 
-  displaySuggestions = (country: string) => {
+  displaySuggestions(country: string) {
     this.errorFound = false;
-    console.log(country);
+    this.word = country;
+    this.activateSuggestions = true;
+    this.countryService.search(country).subscribe(
+      (dataCountries) => (this.suggestedCountries = dataCountries.splice(0, 5)),
+      (err) => (this.suggestedCountries = [])
+    );
+  };
+
+  searchSuggestions(word: string) {
+    this.searchCountry(word)
   }
+
 }
