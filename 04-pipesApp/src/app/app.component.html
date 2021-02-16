@@ -1,13 +1,11 @@
+<div class="text-layout">
+  <h1>{{ name | titlecase }}</h1>
 
-<h1>{{name | lowercase  }}</h1>
+  <h2>{{ value | number }}</h2>
 
-<h2> {{value | number}} </h2>
+  <pre>
+    {{ obj | json }}
+  </pre>
+</div>
 
-<pre>
-  {{obj | json}}
-</pre>
-
-<button pButton (click)="showName()">
-  Cambiar nombre
-</button>
-
+<button pButton (click)="showName()" label="Cambiar Nombre"></button>
