@@ -8,4 +8,17 @@
   </pre>
 </div>
 
-<button pButton (click)="showName()" label="Cambiar Nombre"></button>
+<button
+  (click)="showName()"
+  class="p-button-help"
+  icon="pi pi-bell"
+  iconPos="right"
+  label="Cambiar Nombre"
+  pButton
+></button>
+
+<p-card [style]="{'width': '300px', 'margin-top': '10px'}" [header]="name | titlecase" subheader="Card Subheader">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam doloribus earum, eligendi, exercitationem
+  itaque minima molestias obcaecati omnis optio, quis sint tenetur vel. Accusamus at aut dolores non repudiandae.
+</p-card>
+

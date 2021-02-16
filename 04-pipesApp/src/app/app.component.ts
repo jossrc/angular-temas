@@ -12,9 +12,9 @@ export class AppComponent {
 
   obj = {
     name: this.name
-  }
+  };
 
-  showName() {
+  showName(): void {
     console.log(`Hi, my name is ${this.name}`);
   }
 }
