@@ -20,3 +20,34 @@
     </p-card>
   </div>
 </div>
+
+<div class="text-layout">
+  <h1>Date | Fecha | Pipe</h1>
+  <p>Pipe para mostrar las fechas</p>
+</div>
+
+<div class="p-grid">
+  <div class="p-col-6">
+    <p-card>
+      <ul>
+        <li> today </li>
+        <li> today | date </li>
+        <li> today | date: 'short' </li>
+        <li> today | date: 'long' </li>
+        <li> today | date: 'dd/MM/yyyy' </li>
+      </ul>
+    </p-card>
+  </div>
+  <div class="p-col-6">
+    <p-card>
+      <ul>
+        <li> {{ today }} </li>
+        <li> {{ today | date }} </li>
+        <li> {{ today | date:'short' }} </li>
+        <li> {{ today | date:'long' }} </li>
+        <li> {{ today | date:'dd/MM/yyyy' }} </li>
+      </ul>
+    </p-card>
+  </div>
+</div>
+

@@ -12,4 +12,6 @@ export class BasicComponent {
   upperName = 'JOSE ROBLES';
   fullName = 'joSE rOBLes';
 
+  today = new Date();
+
 }
