@@ -36,6 +36,16 @@
         <li> today | date: 'long' </li>
         <li> today | date: 'dd/MM/yyyy' </li>
       </ul>
+
+      <hr>
+
+      <ul>
+        <li> today | date:'long': 'GMT-6'  </li>
+        <li> today | date:'long': 'GMT-4': 'es-PE'  </li>
+        <li> today | date:'long': '':'en' </li>
+        <li> today | date:'long': '':'fr' </li>
+      </ul>
+
     </p-card>
   </div>
   <div class="p-col-6">
@@ -46,6 +56,15 @@
         <li> {{ today | date:'short' }} </li>
         <li> {{ today | date:'long' }} </li>
         <li> {{ today | date:'dd/MM/yyyy' }} </li>
+      </ul>
+
+      <hr>
+
+      <ul>
+        <li> {{ today | date:'long': 'GMT-6' }} </li>
+        <li> {{ today | date:'long': 'GMT-4': 'es-PE' }} </li>
+        <li> {{ today | date:'long': '':'en' }} </li>
+        <li> {{ today | date:'long': '':'fr' }} </li>
       </ul>
     </p-card>
   </div>
