@@ -20,21 +20,19 @@
 
 <div class="p-grid p-mt-3">
   <div class="p-col">
-    <p-table [value]="[]">
+    <p-table [value]="heroes">
       <ng-template pTemplate="header">
         <tr>
-          <th>Vin</th>
-          <th>Year</th>
-          <th>Brand</th>
+          <th>Nombre</th>
+          <th>Vuela</th>
           <th>Color</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-car>
+      <ng-template pTemplate="body" let-hero>
         <tr>
-          <td>V</td>
-          <td>I</td>
-          <td>D</td>
-          <td>A</td>
+          <td>{{ hero.name }}</td>
+          <td>{{ hero.fly }}</td>
+          <td>{{ hero.color }}</td>
         </tr>
       </ng-template>
     </p-table>
