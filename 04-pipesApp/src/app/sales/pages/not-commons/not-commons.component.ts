@@ -8,12 +8,22 @@ import { Component } from '@angular/core';
 })
 export class NotCommonsComponent {
 
+  // i18nSelect
   name = 'Susana';
   gender = 'female';
 
   mapInvitation = {
     male : 'invitarlo',
     female: 'invitarla'
+  };
+
+  // i18nPlural
+  clients = ['María', 'Pedro', 'Juan', 'Fernando', 'Jose'];
+
+  mapClients = {
+    '=0': 'no tenemos ningún cliente esperando.',
+    '=1': 'tenemos un cliente esperando',
+    other: 'tenemos # clientes esperando'
   };
 
 }
