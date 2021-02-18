@@ -34,6 +34,22 @@ export class NotCommonsComponent {
     address: 'Lima, Peru'
   };
 
+  // JsonPipe
+  heroes = [
+    {
+      name: ' Superman',
+      fly: true
+    },
+    {
+      name: 'Robin',
+      fly: false
+    },
+    {
+      name: 'Aquaman',
+      fly: false
+    }
+  ];
+
   // Tarea
   changeClient(): void {
     if (this.name === 'Susana' ) {
