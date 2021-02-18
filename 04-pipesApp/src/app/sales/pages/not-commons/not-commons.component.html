@@ -30,4 +30,15 @@
       <pre>{{clients | slice:1:3}}</pre>
     </p-fieldset>
   </div>
+
+  <div class="p-col p-md-6">
+    <p-fieldset [toggleable]="true" legend="KeyValue Pipe">
+        <ul>
+          <li *ngFor="let item of people | keyvalue">
+            <b>{{ item.key | titlecase }} </b> : {{ item.value }}
+          </li>
+        </ul>
+    </p-fieldset>
+  </div>
+
 </div>

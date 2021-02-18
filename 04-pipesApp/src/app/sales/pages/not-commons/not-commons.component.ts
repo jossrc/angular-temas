@@ -26,6 +26,15 @@ export class NotCommonsComponent {
     other: 'tenemos # clientes esperando'
   };
 
+  // KeyValue Pipe
+
+  people = {
+    name: 'Jose',
+    age: '22',
+    address: 'Lima, Peru'
+  };
+
+  // Tarea
   changeClient(): void {
     if (this.name === 'Susana' ) {
       this.name = 'Juan';
