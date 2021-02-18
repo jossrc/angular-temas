@@ -10,4 +10,16 @@
         {{totalSales | number:'20.1-2'}}
     </p-card>
   </div>
+
+  <div class="p-col-4">
+    <p-card header="Ventas Brutas" subheader="del presente año">
+      {{totalSales | currency: 'PEN': 'symbol-narrow': '1.0-4'}}
+    </p-card>
+  </div>
+
+  <div class="p-col-4">
+    <p-card header="Ganancia porcentual" subheader="del presente año">
+      {{inPercentage | percent:'1.2-2' }}
+    </p-card>
+  </div>
 </div>
