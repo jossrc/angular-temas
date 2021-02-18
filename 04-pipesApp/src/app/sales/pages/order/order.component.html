@@ -1,1 +1,8 @@
-<p>order works!</p>
+<div class="text-layout">
+  <h1>Pipes personalizados</h1>
+  <p>Pipes creados por {{'nosotros' | mayusculas: enableUppercase}}</p>
+  <button (click)="toggleUppercase()"
+          label="Cambiar a {{(enableUppercase) ? 'minúscula' : 'mayúscula'}}"
+          pButton></button>
+</div>
+

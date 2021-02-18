@@ -7,6 +7,7 @@ import { BasicComponent } from './pages/basic/basic.component';
 import { NumbersComponent } from './pages/numbers/numbers.component';
 import { NotCommonsComponent } from './pages/not-commons/not-commons.component';
 import { OrderComponent } from './pages/order/order.component';
+import {MayusculasPipe} from './pipes/mayusculas.pipe';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { OrderComponent } from './pages/order/order.component';
     NotCommonsComponent,
     BasicComponent,
     OrderComponent,
+    MayusculasPipe
   ],
   exports: [
     NumbersComponent,

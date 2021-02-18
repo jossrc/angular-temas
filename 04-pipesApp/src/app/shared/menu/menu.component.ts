@@ -33,10 +33,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'Pipes personalizados',
         icon: 'pi pi-cog',
-        items: [
-          { label: 'Undo', icon: 'pi pi-refresh' },
-          { label: 'Redo', icon: 'pi pi-repeat' },
-        ],
+        routerLink: 'ordenar'
       },
     ];
   }
