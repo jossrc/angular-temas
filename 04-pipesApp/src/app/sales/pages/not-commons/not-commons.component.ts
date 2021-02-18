@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-not-commons',
@@ -49,6 +50,15 @@ export class NotCommonsComponent {
       fly: false
     }
   ];
+
+  // Async Pipe
+  myObservable = interval(3000);
+
+  myPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('Tenemos data de promesa');
+    }, 3500);
+  });
 
   // Tarea
   changeClient(): void {
