@@ -26,4 +26,18 @@ export class NotCommonsComponent {
     other: 'tenemos # clientes esperando'
   };
 
+  changeClient(): void {
+    if (this.name === 'Susana' ) {
+      this.name = 'Juan';
+      this.gender = 'male';
+    } else {
+      this.name = 'Susana';
+      this.gender = 'female';
+    }
+  }
+
+  removeClient(): void {
+    if (this.clients.length >= 0) {  this.clients.pop(); }
+  }
+
 }
