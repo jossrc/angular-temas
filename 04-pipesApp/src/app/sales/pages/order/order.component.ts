@@ -10,6 +10,9 @@ import {Color, Hero} from '../../interfaces/sales.interfaces';
 export class OrderComponent {
 
   enableUppercase = true;
+
+  orderBy = 'no-order';
+
   heroes: Hero[] = [
     {
       name: 'Superman',
@@ -40,6 +43,10 @@ export class OrderComponent {
 
   toggleUppercase(): void {
     this.enableUppercase = !this.enableUppercase;
+  }
+
+  changeOrder( value: string): void {
+    this.orderBy = value;
   }
 
 }

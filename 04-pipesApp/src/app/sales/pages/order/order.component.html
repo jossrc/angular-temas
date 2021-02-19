@@ -12,15 +12,15 @@
     <button (click)="toggleUppercase()"
             label="Cambiar a {{(enableUppercase) ? 'minúscula' : 'mayúscula'}}"
             pButton class="p-mr-1 p-button-warning"></button>
-    <button pButton icon="pi pi-sort" label="Por nombre" class="p-mr-1"></button>
-    <button pButton icon="pi pi-sort" label="Vuela" class="p-mr-1 p-button-success"></button>
-    <button pButton icon="pi pi-sort" label="Por color" class="p-mr-1 p-button-help"></button>
+    <button (click)="changeOrder('name')" pButton icon="pi pi-sort" label="Por nombre" class="p-mr-1"></button>
+    <button (click)="changeOrder('fly')" pButton icon="pi pi-sort" label="Vuela" class="p-mr-1 p-button-success"></button>
+    <button (click)="changeOrder('color')" pButton icon="pi pi-sort" label="Por color" class="p-mr-1 p-button-help"></button>
   </div>
 </p-toolbar>
 
 <div class="p-grid p-mt-3">
   <div class="p-col">
-    <p-table [value]="heroes | order">
+    <p-table [value]="heroes | order: orderBy">
       <ng-template pTemplate="header">
         <tr>
           <th>Nombre</th>
