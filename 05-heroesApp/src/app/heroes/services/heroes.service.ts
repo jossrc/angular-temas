@@ -8,12 +8,23 @@ import { Hero } from '../interfaces/heroes.interface';
   providedIn: 'root',
 })
 export class HeroesService {
+
+  private url = 'http://localhost:3000';
+
   constructor(private http: HttpClient) {}
 
   /**
    * Retorna una lista de héroes en forma de Observable
    */
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>('http://localhost:3000/heroes');
+    return this.http.get<Hero[]>(`${this.url}/heroes`);
   }
+
+  /**
+   * Retorna un de héroe por su id en forma de Observable
+   */
+  getHeroById(id: string): Observable<Hero> {
+    return this.http.get<Hero>(`${this.url}/heroes/${id}`);
+  }
+
 }
