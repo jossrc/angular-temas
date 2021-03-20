@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Hero } from '../interfaces/heroes.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HeroesService {
 
-  private url = 'http://localhost:3000';
+  private url: string = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
 
