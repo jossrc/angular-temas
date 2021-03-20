@@ -6,7 +6,7 @@
 
   <img
     mat-card-image
-    src="assets/heroes/{{ hero.id }}.jpg"
+    [src]="hero | heroImage"
     [alt]="hero.superhero"
   />
 
