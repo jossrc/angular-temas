@@ -37,4 +37,14 @@ export class HeroesService {
 
     return this.http.get<Hero[]>(`${this.url}/heroes`, { params });
   }
+
+  /**
+   * Registra un nuevo héroe a la base de datos.
+   * Retorna el héroe registrado como observable
+   * @param hero Héroe a registrar en la BD
+   */
+  addNewHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(`${this.url}/heroes`, hero);
+  }
 }
+
