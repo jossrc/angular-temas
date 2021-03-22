@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
@@ -8,7 +8,14 @@ import { HeroesService } from '../../services/heroes.service';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styles: [],
+  styles: [
+    `
+      img {
+        width: 100%;
+        border-radius: 5px;
+      }
+    `,
+  ],
 })
 export class AddComponent implements OnInit {
   public publishers = [
@@ -38,6 +45,10 @@ export class AddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (this.router.url.includes('editar')) {
+      return;
+    }
+
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.heroesService.getHeroById(id)))
       .subscribe((hero) => (this.hero = hero));
