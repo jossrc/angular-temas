@@ -47,7 +47,20 @@ export class HeroesService {
     return this.http.post<Hero>(`${this.url}/heroes`, hero);
   }
 
+  /**
+   * Actualiza los datos de un héroe registrado.
+   * Retorna el héroe como observable
+   * @param hero Héroe a actualizar
+   */
   updateHero(hero: Hero): Observable<Hero> {
     return this.http.put<Hero>(`${this.url}/heroes/${hero.id}`, hero);
+  }
+
+  /**
+   * Elimina un héroe de la Base de datos
+   * @param id Id del héroe a eliminar
+   */
+  deleteHero(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.url}/heroes/${id}`);
   }
 }
