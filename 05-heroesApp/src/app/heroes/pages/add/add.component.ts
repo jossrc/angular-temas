@@ -86,12 +86,17 @@ export class AddComponent implements OnInit {
   }
 
   deleteHero(): void {
-    this.dialog.open(ConfirmComponent, {
+    const dialog = this.dialog.open(ConfirmComponent, {
       width: '250px',
+      data: { ...this.hero },
     });
 
-    this.heroesService
-      .deleteHero(this.hero.id!)
-      .subscribe((resp) => this.router.navigate(['/heroes']));
+    dialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.heroesService
+          .deleteHero(this.hero.id!)
+          .subscribe((resp) => this.router.navigate(['/heroes']));
+      }
+    });
   }
 }
