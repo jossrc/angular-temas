@@ -166,6 +166,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "superhero": "Robin",
+      "alter_ego": "Ricardo Tapia",
+      "characters": "Robin, Robin Jr, Nightmare",
+      "first_appearance": "En el primer cómic!",
+      "publisher": "DC Comics",
+      "alt_img": "https://images-na.ssl-images-amazon.com/images/I/91I7ZRw1uhL.jpg",
+      "id": "iWCqInC"
     }
   ]
 }
