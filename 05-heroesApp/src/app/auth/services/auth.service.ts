@@ -21,7 +21,8 @@ export class AuthService {
   login(): Observable<Auth> {
     return this.http.get<Auth>(`${this.baseUrl}/users/1`).pipe(
       // Efecto secundario
-      tap((auth) => (this._auth = auth))
+      tap((auth) => (this._auth = auth)),
+      tap((auth) => localStorage.setItem('id', auth.id) )
     );
   }
 
