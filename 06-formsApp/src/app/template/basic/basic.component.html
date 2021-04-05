@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col">
     <form
-      (ngSubmit)="save(myForm)"
+      (ngSubmit)="save()"
       class="form"
       method="POST"
       #myForm="ngForm"
@@ -24,8 +24,7 @@
             minlength="3"
           />
           <span class="form-text text-danger"
-            *ngIf="myForm.controls.txtProduct?.invalid &&
-                   myForm.controls.txtProduct?.touched">
+            *ngIf="validateName()">
               * Debe de ser + de 3 letras
           </span>
         </div>
