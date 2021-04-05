@@ -21,8 +21,13 @@
             ngModel
             placeholder="Nombre del producto"
             required
+            minlength="3"
           />
-          <span class="form-text text-danger">* Debe de ser + de 3 letras</span>
+          <span class="form-text text-danger"
+            *ngIf="myForm.controls.txtProduct?.invalid &&
+                   myForm.controls.txtProduct?.touched">
+              * Debe de ser + de 3 letras
+          </span>
         </div>
       </div>
 
@@ -72,6 +77,14 @@
     <span> <b>Valid</b> </span>
     <pre>
       {{ myForm.valid }}</pre>
+
+    <span> <b>Pristine</b> </span>
+    <pre>
+      {{ myForm.pristine }}</pre>
+
+    <span> <b>Touched</b> </span>
+    <pre>
+      {{ myForm.touched }}</pre>
 
     <span><b>Value</b></span>
     <pre class="pre-style">{{ myForm.value | json }}</pre>
