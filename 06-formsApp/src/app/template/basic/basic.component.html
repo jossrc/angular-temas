@@ -43,6 +43,10 @@
             required
             min="0"
           />
+          <span class="form-text text-danger"
+            *ngIf="validatePrice()">
+              * El precio debe de ser mayor o igual a 0
+          </span>
         </div>
       </div>
 
@@ -62,7 +66,7 @@
 
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-primary float-end">
+          <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary float-end">
             Guardar
           </button>
         </div>

@@ -15,7 +15,6 @@ import { NgForm } from '@angular/forms';
   ],
 })
 export class BasicComponent implements OnInit {
-
   @ViewChild('myForm') myForm!: NgForm;
 
   constructor() {}
@@ -23,11 +22,24 @@ export class BasicComponent implements OnInit {
   ngOnInit(): void {}
 
   validateName(): boolean {
-    return this.myForm?.controls.txtProduct?.invalid &&
-           this.myForm?.controls.txtProduct?.touched
+    return (
+      this.myForm?.controls.txtProduct?.invalid &&
+      this.myForm?.controls.txtProduct?.touched
+    );
+  }
+
+  validatePrice(): boolean {
+    const txtPrice = this.myForm?.controls.txtPrice;
+
+    return txtPrice?.touched && txtPrice?.value < 0;
   }
 
   save(): void {
     console.log(this.myForm);
+
+    if (this.myForm.controls.txtPrice.value < 0) {
+      console.log('No posteado');
+      return;
+    }
   }
 }
