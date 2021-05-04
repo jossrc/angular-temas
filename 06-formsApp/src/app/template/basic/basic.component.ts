@@ -35,7 +35,7 @@ export class BasicComponent implements OnInit {
   }
 
   save(): void {
-    console.log(this.myForm);
+    console.log(this.myForm.controls);
 
     if (this.myForm.controls.txtPrice.value < 0) {
       console.log('No posteado');

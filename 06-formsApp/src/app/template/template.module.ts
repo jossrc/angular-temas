@@ -7,12 +7,15 @@ import { BasicComponent } from './basic/basic.component';
 import { DinamicComponent } from './dinamic/dinamic.component';
 import { SwitchesComponent } from './switches/switches.component';
 
+import { CustomMinDirective } from './directives/custom-min.directive';
+
 @NgModule({
-  declarations: [BasicComponent, DinamicComponent, SwitchesComponent],
-  imports: [
-    CommonModule,
-    TemplateRoutingModule,
-    FormsModule
-  ]
+  declarations: [
+    BasicComponent,
+    DinamicComponent,
+    SwitchesComponent,
+    CustomMinDirective,
+  ],
+  imports: [CommonModule, TemplateRoutingModule, FormsModule],
 })
-export class TemplateModule { }
+export class TemplateModule {}

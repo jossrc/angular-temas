@@ -59,7 +59,10 @@
             class="form-control"
             name="txtStock"
             ngModel
+            customMin
+            [minimum]="0"
             placeholder="Stock del producto"
+            required
           />
         </div>
       </div>
@@ -91,5 +94,8 @@
 
     <span><b>Value</b></span>
     <pre class="pre-style">{{ myForm.value | json }}</pre>
+
+    <span><b>CustomDirective</b></span>
+    <pre class="pre-style">{{ myForm.controls.txtStock?.errors | json }}</pre>
   </div>
 </div>
