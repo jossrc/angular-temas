@@ -13,4 +13,8 @@ export class DinamicComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  save(): void {
+    console.log('Enviando')
+  }
+
 }

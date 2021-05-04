@@ -1,1 +1,63 @@
-<p>dinamic works!</p>
+<h2>Template: <small>Dinámicos</small></h2>
+<hr />
+
+<form (ngSubmit)="save()" autocomplete="off" #myForm="ngForm">
+  <!-- Nombre -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Nombre : </label>
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        name="txtName"
+        ngModel
+        placeholder="Nombre de la persona"
+        required
+      />
+      <span
+        class="form-text text-danger"
+        *ngIf="
+          myForm.controls.txtName?.errors && myForm.controls.txtName?.touched
+        "
+      >
+        * Este campo es obligatorio
+      </span>
+    </div>
+  </div>
+
+  <!-- Agregar favorito -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Agregar : </label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input class="form-control" placeholder="Agregar favorito" />
+        <button class="btn btn-outline-primary" type="button">Agregar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de Juegos Favoritos -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favoritos : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control mb-1" />
+      <input type="text" class="form-control mb-1" />
+      <input type="text" class="form-control mb-1" />
+      <input type="text" class="form-control mb-1" />
+      <input type="text" class="form-control mb-1" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button
+        [disabled]="myForm.invalid"
+        class="btn btn-success float-end"
+        type="button"
+        (click)="save()"
+      >
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
