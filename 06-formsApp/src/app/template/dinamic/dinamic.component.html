@@ -10,7 +10,7 @@
         type="text"
         class="form-control"
         name="txtName"
-        ngModel
+        [ngModel]="person.name"
         placeholder="Nombre de la persona"
         required
       />
@@ -40,11 +40,14 @@
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Favoritos : </label>
     <div class="col-sm-9">
-      <input type="text" class="form-control mb-1" />
-      <input type="text" class="form-control mb-1" />
-      <input type="text" class="form-control mb-1" />
-      <input type="text" class="form-control mb-1" />
-      <input type="text" class="form-control mb-1" />
+      <input
+        *ngFor="let game of person.favorites; let i = index"
+        [(ngModel)]="game.name"
+        [name]="'favorite_'+i"
+        type="text"
+        class="form-control mb-1"
+        required
+      />
     </div>
   </div>
 
@@ -61,3 +64,7 @@
     </div>
   </div>
 </form>
+
+
+<span><b>Persona : </b></span>
+<pre> {{ person | json}} </pre>

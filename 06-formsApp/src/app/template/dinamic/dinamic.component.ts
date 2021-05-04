@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+interface Person {
+  name: string;
+  favorites: Favorite[];
+}
+
+interface Favorite {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-dinamic',
@@ -6,11 +16,14 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class DinamicComponent implements OnInit {
+export class DinamicComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  person: Person = {
+    name: 'Jose Robles',
+    favorites: [
+      { id: 1, name: 'Dark Souls' },
+      { id: 2, name: 'Bloodborne' },
+    ]
   }
 
   save(): void {
