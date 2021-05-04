@@ -17,6 +17,12 @@ import { NgForm } from '@angular/forms';
 export class BasicComponent implements OnInit {
   @ViewChild('myForm') myForm!: NgForm;
 
+  initForm = {
+    product : '',
+    price : 10,
+    stock : 10
+  }
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -35,11 +41,15 @@ export class BasicComponent implements OnInit {
   }
 
   save(): void {
-    console.log(this.myForm.controls);
-
     if (this.myForm.controls.txtPrice.value < 0) {
       console.log('No posteado');
       return;
     }
+
+    this.myForm.resetForm({
+      txtProduct: '',
+      txtPrice: 0,
+      txtStock: 0
+    });
   }
 }
