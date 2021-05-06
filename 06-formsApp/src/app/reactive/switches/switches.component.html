@@ -1,1 +1,88 @@
-<p>switches works!</p>
+<h2>Reactivos: <small>Switches</small></h2>
+<hr />
+
+<form>
+  <!-- Radio -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Género</label>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="radioGender"
+          value="M"
+          id="radioMale"
+        />
+        <label class="form-check-label" for="radioMale"> Masculino </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="radioGender"
+          value="F"
+          id="radioFemenine"
+        />
+        <label class="form-check-label" for="radioFemenine"> Femenino </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Switches -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Notificaciones</label>
+    <div class="col-sm-9">
+      <div class="form-check form-switch mt-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="switchNotifications"
+        />
+        <label class="form-check-label" for="switchNotifications"
+          >Quiero recibir notificaciones</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Check -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label"></label>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="checkTerms" />
+        <label class="form-check-label" for="checkTerms">
+          Términos y condiciones de uso
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Boton Submit -->
+  <div class="row mb-3">
+    <div class="col">
+      <button class="btn btn-primary float-end">Guardar</button>
+    </div>
+  </div>
+</form>
+
+<!--
+<h5>Valor del formulario</h5>
+<pre>{{ myForm.value | json }} </pre>
+<br />
+
+<h5>Persona</h5>
+<pre>{{ person | json }} </pre>
+<br />
+
+<h5>Invalid</h5>
+<pre> {{ myForm.invalid }} </pre>
+<br />
+
+<h5>Términos</h5>
+<pre>{{ myForm.controls?.checkTerms?.errors | json }} </pre>
+<br />
+
+<pre>Condiciones: </pre>
+-->

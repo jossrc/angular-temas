@@ -1,1 +1,82 @@
-<p>basic works!</p>
+<h2>Reactivos: <small>Básicos</small></h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form class="form" method="POST" autocomplete="off">
+      <!-- Campo de producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Producto</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre del producto"
+          />
+          <span class="form-text text-danger">
+            * Debe de ser + de 3 letras
+          </span>
+        </div>
+      </div>
+
+      <!-- Precio de producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Precio del producto"
+          />
+          <span class="form-text text-danger">
+            * El precio debe de ser mayor o igual a 0
+          </span>
+        </div>
+      </div>
+
+      <!-- Stock del producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Stock</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Stock del producto"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary float-end">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--
+<div class="row">
+  <div class="col">
+    <span> <b>Valid</b> </span>
+    <pre>
+      {{ myForm.valid }}</pre>
+
+    <span> <b>Pristine</b> </span>
+    <pre>
+      {{ myForm.pristine }}</pre>
+
+    <span> <b>Touched</b> </span>
+    <pre>
+      {{ myForm.touched }}</pre>
+
+    <span><b>Value</b></span>
+    <pre class="pre-style">{{ myForm.value | json }}</pre>
+
+    <span><b>CustomDirective</b></span>
+    <pre class="pre-style">{{ myForm.controls.txtStock?.errors | json }}</pre>
+  </div>
+</div>
+-->
