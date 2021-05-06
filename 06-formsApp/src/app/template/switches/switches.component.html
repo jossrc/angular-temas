@@ -74,7 +74,7 @@
   <!-- Boton Submit -->
   <div class="row mb-3">
     <div class="col">
-      <button class="btn btn-primary float-end" [disabled]="myForm.valid">
+      <button class="btn btn-primary float-end" [disabled]="myForm.invalid">
         Guardar
       </button>
     </div>
@@ -89,8 +89,8 @@
 <pre>{{ person | json }} </pre>
 <br />
 
-<h5>Valid</h5>
-<pre> {{ myForm.valid }} </pre>
+<h5>Invalid</h5>
+<pre> {{ myForm.invalid }} </pre>
 <br />
 
 <h5>Términos</h5>
