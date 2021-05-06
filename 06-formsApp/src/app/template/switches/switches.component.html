@@ -11,8 +11,10 @@
           class="form-check-input"
           type="radio"
           name="radioGender"
+          [(ngModel)]="person.gender"
+          value="M"
           id="radioMale"
-          checked
+          required
         />
         <label class="form-check-label" for="radioMale"> Masculino </label>
       </div>
@@ -21,7 +23,10 @@
           class="form-check-input"
           type="radio"
           name="radioGender"
+          [(ngModel)]="person.gender"
+          value="F"
           id="radioFemenine"
+          required
         />
         <label class="form-check-label" for="radioFemenine"> Femenino </label>
       </div>
@@ -37,6 +42,8 @@
           class="form-check-input"
           type="checkbox"
           id="switchNotifications"
+          name="switchNotifications"
+          [(ngModel)]="person.notifications"
         />
         <label class="form-check-label" for="switchNotifications"
           >Quiero recibir notificaciones</label
@@ -50,7 +57,13 @@
     <label class="col-sm-3 col-form-label"></label>
     <div class="col-sm-9">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkTerms">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="checkTerms"
+          [(ngModel)]="termsAndConditions"
+          name="checkTerms"
+        />
         <label class="form-check-label" for="checkTerms">
           Términos y condiciones de uso
         </label>
@@ -61,9 +74,27 @@
   <!-- Boton Submit -->
   <div class="row mb-3">
     <div class="col">
-      <button class="btn btn-primary float-end">
+      <button class="btn btn-primary float-end" [disabled]="myForm.valid">
         Guardar
       </button>
     </div>
   </div>
 </form>
+
+<h5>Valor del formulario</h5>
+<pre>{{ myForm.value | json }} </pre>
+<br />
+
+<h5>Persona</h5>
+<pre>{{ person | json }} </pre>
+<br />
+
+<h5>Valid</h5>
+<pre> {{ myForm.valid }} </pre>
+<br />
+
+<h5>Términos</h5>
+<pre>{{ myForm.controls?.checkTerms?.errors | json }} </pre>
+<br />
+
+<pre>Condiciones: </pre>
