@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col">
-    <form class="form" method="POST" autocomplete="off">
+    <form class="form" [formGroup]="myForm" method="POST" autocomplete="off">
       <!-- Campo de producto -->
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Producto</label>
@@ -12,6 +12,7 @@
             type="text"
             class="form-control"
             placeholder="Nombre del producto"
+            formControlName="txtProductName"
           />
           <span class="form-text text-danger">
             * Debe de ser + de 3 letras
@@ -57,20 +58,16 @@
   </div>
 </div>
 
-<!--
 <div class="row">
   <div class="col">
     <span> <b>Valid</b> </span>
-    <pre>
-      {{ myForm.valid }}</pre>
+    <pre>      {{ myForm.valid }}</pre>
 
     <span> <b>Pristine</b> </span>
-    <pre>
-      {{ myForm.pristine }}</pre>
+    <pre>      {{ myForm.pristine }}</pre>
 
     <span> <b>Touched</b> </span>
-    <pre>
-      {{ myForm.touched }}</pre>
+    <pre>      {{ myForm.touched }}</pre>
 
     <span><b>Value</b></span>
     <pre class="pre-style">{{ myForm.value | json }}</pre>
@@ -79,4 +76,3 @@
     <pre class="pre-style">{{ myForm.controls.txtStock?.errors | json }}</pre>
   </div>
 </div>
--->

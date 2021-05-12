@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class BasicComponent implements OnInit {
+export class BasicComponent {
 
-  constructor() { }
+  myForm: FormGroup = new FormGroup({
+    txtProductName: new FormControl('RTX 4080ti'),
+  });
 
-  ngOnInit(): void {
-  }
-
+  constructor() {}
 }
