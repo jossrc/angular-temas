@@ -9,13 +9,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class BasicComponent {
   // null, 0, etc.
   myForm: FormGroup = this.formBuilder.group({
-    txtProductName: [
-      'RTX 4080ti',
-      [Validators.required, Validators.minLength(3)],
-    ],
-    txtProductPrice: [1500, [Validators.required, Validators.min(0)]],
-    txtProductStock: [5, [Validators.required, Validators.min(0)]],
+    txtProductName: [, [Validators.required, Validators.minLength(3)]],
+    txtProductPrice: [, [Validators.required, Validators.min(0)]],
+    txtProductStock: [, [Validators.required, Validators.min(0)]],
   });
 
   constructor(private formBuilder: FormBuilder) {}
+
+  isValidField(field: string) {
+    return (
+      this.myForm.controls[field].errors && this.myForm.controls[field].touched
+    );
+  }
 }

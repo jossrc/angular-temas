@@ -14,7 +14,10 @@
             placeholder="Nombre del producto"
             formControlName="txtProductName"
           />
-          <span class="form-text text-danger">
+          <span
+            *ngIf="isValidField('txtProductName')"
+            class="form-text text-danger"
+          >
             * Debe de ser + de 3 letras
           </span>
         </div>
@@ -29,8 +32,13 @@
             class="form-control"
             placeholder="Precio del producto"
             formControlName="txtProductPrice"
+            min="0"
+            step="any"
           />
-          <span class="form-text text-danger">
+          <span
+            *ngIf="isValidField('txtProductPrice')"
+            class="form-text text-danger"
+          >
             * El precio debe de ser mayor o igual a 0
           </span>
         </div>
@@ -45,7 +53,15 @@
             class="form-control"
             placeholder="Stock del producto"
             formControlName="txtProductStock"
+            min="0"
+            step="1"
           />
+          <span
+            *ngIf="isValidField('txtProductStock')"
+            class="form-text text-danger"
+          >
+            * El stock debe de ser mayor o igual a 0
+          </span>
         </div>
       </div>
 
@@ -78,7 +94,9 @@
     <span><b>Value</b></span>
     <pre class="pre-style">{{ myForm.value | json }}</pre>
 
-    <span><b>CustomDirective</b></span>
-    <pre class="pre-style">{{ myForm.controls.txtStock?.errors | json }}</pre>
+    <span><b>Precio</b></span>
+    <pre class="pre-style">{{
+      myForm.controls.txtProductPrice.errors | json
+    }}</pre>
   </div>
 </div>
