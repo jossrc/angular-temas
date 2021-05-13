@@ -3,7 +3,13 @@
 
 <div class="row">
   <div class="col">
-    <form class="form" [formGroup]="myForm" method="POST" autocomplete="off">
+    <form
+      (ngSubmit)="save()"
+      class="form"
+      [formGroup]="myForm"
+      method="POST"
+      autocomplete="off"
+    >
       <!-- Campo de producto -->
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Producto</label>
@@ -67,11 +73,7 @@
 
       <div class="row">
         <div class="col">
-          <button
-            type="submit"
-            class="btn btn-primary float-end"
-            [disabled]="myForm.invalid"
-          >
+          <button type="submit" class="btn btn-primary float-end">
             Guardar
           </button>
         </div>

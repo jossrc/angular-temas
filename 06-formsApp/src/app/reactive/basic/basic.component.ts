@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './basic.component.html',
   styles: [],
 })
-export class BasicComponent {
+export class BasicComponent implements OnInit {
   // null, 0, etc.
   myForm: FormGroup = this.formBuilder.group({
     txtProductName: [, [Validators.required, Validators.minLength(3)]],
@@ -16,9 +16,27 @@ export class BasicComponent {
 
   constructor(private formBuilder: FormBuilder) {}
 
-  isValidField(field: string) {
+  ngOnInit(): void {
+    this.myForm.reset({
+      txtProductName: 'RTX 4080ti',
+      txtProductPrice: 1600,
+      txtProductStock: 10
+    })
+  }
+
+  isValidField(field: string): boolean | null {
     return (
       this.myForm.controls[field].errors && this.myForm.controls[field].touched
     );
+  }
+
+  save(): void {
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
+      return;
+    }
+
+    console.log(this.myForm.value);
+    this.myForm.reset();
   }
 }
