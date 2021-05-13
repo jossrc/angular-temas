@@ -1,7 +1,7 @@
 <h2>Reactivos: <small>Dinámicos</small></h2>
 <hr />
 
-<form autocomplete="off">
+<form class="form" [formGroup]="myForm" autocomplete="off" method="POST">
   <!-- Nombre -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Nombre : </label>
@@ -10,8 +10,11 @@
         type="text"
         class="form-control"
         placeholder="Nombre de la persona"
+        formControlName="txtPersonName"
       />
-      <span class="form-text text-danger"> * Este campo es obligatorio </span>
+      <span *ngIf="isValidField('txtPersonName')" class="form-text text-danger">
+        * Este campo es obligatorio
+      </span>
     </div>
   </div>
 
@@ -52,7 +55,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <button class="btn btn-success float-end" type="button" (click)="(null)">
+      <button class="btn btn-success float-end" type="button" (click)="save()">
         Guardar
       </button>
     </div>
