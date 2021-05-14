@@ -1,7 +1,7 @@
 <h2>Reactivos: <small>Switches</small></h2>
 <hr />
 
-<form [formGroup]="myForm">
+<form [formGroup]="myForm" (ngSubmit)="save()">
   <!-- Radio -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Género</label>
@@ -68,7 +68,7 @@
   <!-- Boton Submit -->
   <div class="row mb-3">
     <div class="col">
-      <button class="btn btn-primary float-end">Guardar</button>
+      <button type="submit" class="btn btn-primary float-end">Guardar</button>
     </div>
   </div>
 </form>
@@ -85,8 +85,3 @@
 <pre> {{ myForm.valid }} </pre>
 <br />
 
-<h5>Términos</h5>
-<!--<pre>{{ myForm.controls?.checkTerms?.errors | json }} </pre>-->
-<br />
-
-<pre>Condiciones: </pre>
