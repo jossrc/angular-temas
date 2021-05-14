@@ -1,7 +1,7 @@
 <h2>Reactivos: <small>Switches</small></h2>
 <hr />
 
-<form>
+<form [formGroup]="myForm">
   <!-- Radio -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Género</label>
@@ -10,9 +10,9 @@
         <input
           class="form-check-input"
           type="radio"
-          name="radioGender"
           value="M"
           id="radioMale"
+          formControlName="rdoGender"
         />
         <label class="form-check-label" for="radioMale"> Masculino </label>
       </div>
@@ -20,9 +20,9 @@
         <input
           class="form-check-input"
           type="radio"
-          name="radioGender"
           value="F"
           id="radioFemenine"
+          formControlName="rdoGender"
         />
         <label class="form-check-label" for="radioFemenine"> Femenino </label>
       </div>
@@ -38,6 +38,7 @@
           class="form-check-input"
           type="checkbox"
           id="switchNotifications"
+          formControlName="chkNotifications"
         />
         <label class="form-check-label" for="switchNotifications"
           >Quiero recibir notificaciones</label
@@ -51,7 +52,12 @@
     <label class="col-sm-3 col-form-label"></label>
     <div class="col-sm-9">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkTerms" />
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="checkTerms"
+          formControlName="chkConditions"
+        />
         <label class="form-check-label" for="checkTerms">
           Términos y condiciones de uso
         </label>
@@ -67,7 +73,6 @@
   </div>
 </form>
 
-<!--
 <h5>Valor del formulario</h5>
 <pre>{{ myForm.value | json }} </pre>
 <br />
@@ -76,13 +81,12 @@
 <pre>{{ person | json }} </pre>
 <br />
 
-<h5>Invalid</h5>
-<pre> {{ myForm.invalid }} </pre>
+<h5>Valid</h5>
+<pre> {{ myForm.valid }} </pre>
 <br />
 
 <h5>Términos</h5>
-<pre>{{ myForm.controls?.checkTerms?.errors | json }} </pre>
+<!--<pre>{{ myForm.controls?.checkTerms?.errors | json }} </pre>-->
 <br />
 
 <pre>Condiciones: </pre>
--->
