@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormArray,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-dinamic',
@@ -18,11 +24,35 @@ export class DinamicComponent {
     ),
   });
 
+  newFavorite: FormControl = this.formBuilder.control('', Validators.required);
+
   get favoriteGames(): FormArray {
     return this.myForm.get('txtFavoriteGames') as FormArray;
   }
 
   constructor(private formBuilder: FormBuilder) {}
+
+  addNewFavoriteGame(): void {
+    if (this.newFavorite.invalid) {
+      return;
+    }
+
+    // Forma 01
+    /*
+    this.favoriteGames.push(
+      new FormControl(this.newFavorite.value, Validators.required)
+    );
+    */
+
+    // Forma 02
+    this.favoriteGames.push(
+      this.formBuilder.control(
+        this.newFavorite.value, Validators.required
+      )
+    );
+
+    this.newFavorite.reset();
+  }
 
   isValidField(field: string): boolean | null {
     return (

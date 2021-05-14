@@ -25,10 +25,15 @@
       <div class="input-group">
         <input
           class="form-control"
-          (keyup.enter)="(null)"
+          (keyup.enter)="addNewFavoriteGame()"
           placeholder="Agregar favorito"
+          [formControl]="newFavorite"
         />
-        <button class="btn btn-outline-primary" type="button" (click)="(null)">
+        <button
+          class="btn btn-outline-primary"
+          type="button"
+          (click)="addNewFavoriteGame()"
+        >
           Agregar
         </button>
       </div>
@@ -67,6 +72,12 @@
 
     <span><b>Value</b></span>
     <pre>{{ myForm.value | json }}</pre>
+
+    <span><b>Agregar Juego - valid</b></span>
+    <pre>      {{ newFavorite.valid }}</pre>
+
+    <span><b>Agregar Juego - value</b></span>
+    <pre>      {{ newFavorite.value | json }}</pre>
   </div>
 </div>
 <!--
