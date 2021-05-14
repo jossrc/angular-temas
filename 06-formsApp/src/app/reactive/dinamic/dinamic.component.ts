@@ -13,6 +13,7 @@ import {
   styles: [],
 })
 export class DinamicComponent {
+
   myForm: FormGroup = this.formBuilder.group({
     txtPersonName: ['', [Validators.required, Validators.minLength(3)]],
     txtFavoriteGames: this.formBuilder.array(
@@ -37,21 +38,15 @@ export class DinamicComponent {
       return;
     }
 
-    // Forma 01
-    /*
     this.favoriteGames.push(
-      new FormControl(this.newFavorite.value, Validators.required)
-    );
-    */
-
-    // Forma 02
-    this.favoriteGames.push(
-      this.formBuilder.control(
-        this.newFavorite.value, Validators.required
-      )
+      this.formBuilder.control(this.newFavorite.value, Validators.required)
     );
 
     this.newFavorite.reset();
+  }
+
+  removeFavoriteGame(index: number): void {
+    this.favoriteGames.removeAt(index);
   }
 
   isValidField(field: string): boolean | null {

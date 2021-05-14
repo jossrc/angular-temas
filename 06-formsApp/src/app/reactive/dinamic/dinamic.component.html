@@ -49,7 +49,11 @@
         *ngFor="let favorite of favoriteGames.controls; let i = index"
       >
         <input [formControlName]="i" type="text" class="form-control" />
-        <button class="btn btn-outline-danger" type="button" (click)="(null)">
+        <button
+          class="btn btn-outline-danger"
+          type="button"
+          (click)="removeFavoriteGame(i)"
+        >
           X
         </button>
       </div>
