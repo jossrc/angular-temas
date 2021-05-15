@@ -36,8 +36,15 @@
             type="text"
             class="form-control"
             placeholder="Ingrese Username"
+            formControlName="txtUsername"
             id="txtUsername"
           />
+          <span
+            *ngIf="isValidField('txtUsername')"
+            class="form-text text-danger"
+          >
+            El username no puede ser Strider o vacío
+          </span>
         </div>
       </div>
 
@@ -107,6 +114,9 @@
 
     <span><b>Nombre</b></span>
     <pre>{{ myForm.controls.txtName.errors | json }}</pre>
+
+    <span><b>Username</b></span>
+    <pre>{{ myForm.controls.txtUsername.errors | json }}</pre>
 
     <span><b>Email</b></span>
     <pre>{{ myForm.controls.txtEmail.errors | json }}</pre>
