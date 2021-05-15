@@ -3,7 +3,12 @@
 
 <div class="row">
   <div class="col">
-    <form method="POST" autocomplete="off">
+    <form
+      (ngSubmit)="submitForm()"
+      [formGroup]="myForm"
+      method="POST"
+      autocomplete="off"
+    >
       <!-- Nombre -->
       <div class="row mb-3">
         <label for="txtName" class="col-sm-3 col-form-label">Nombre</label>
@@ -12,9 +17,10 @@
             type="text"
             class="form-control"
             placeholder="Nombre del usuario"
+            formControlName="txtName"
             id="txtName"
           />
-          <span class="form-text text-danger">
+          <span *ngIf="isValidField('txtName')" class="form-text text-danger">
             Debe ser en formato de nombre y apellido
           </span>
         </div>
@@ -80,9 +86,22 @@
 
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary float-end">Crear</button>
+          <button type="submit" class="btn btn-primary float-end">Crear</button>
         </div>
       </div>
     </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span> <b>Valid</b> </span>
+    <pre>      {{ myForm.valid }}</pre>
+
+    <span><b>Value</b></span>
+    <pre>{{ myForm.value | json }}</pre>
+
+    <span><b>Nombre</b></span>
+    <pre>{{ myForm.controls.txtName.errors | json }}</pre>
   </div>
 </div>
