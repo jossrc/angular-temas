@@ -1,1 +1,88 @@
-<p>register works!</p>
+<h2>Validaciones Reactivas</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form method="POST" autocomplete="off">
+      <!-- Nombre -->
+      <div class="row mb-3">
+        <label for="txtName" class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre del usuario"
+            id="txtName"
+          />
+          <span class="form-text text-danger">
+            Debe ser en formato de nombre y apellido
+          </span>
+        </div>
+      </div>
+
+      <!-- Username -->
+      <div class="row mb-3">
+        <label for="txtUsername" class="col-sm-3 col-form-label"
+          >Username</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese Username"
+            id="txtUsername"
+          />
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="row mb-3">
+        <label for="txtEmail" class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email del usuario"
+            id="txtEmail"
+          />
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="row mb-3">
+        <label for="txtPassword" class="col-sm-3 col-form-label"
+          >Password</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Clave del usuario"
+            id="txtPassword"
+          />
+        </div>
+      </div>
+
+      <!-- Password 2 -->
+      <div class="row mb-3">
+        <label for="txtPassword2" class="col-sm-3 col-form-label"
+          >Repite Password</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirma tu clave"
+            id="txtPassword2"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary float-end">Crear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
