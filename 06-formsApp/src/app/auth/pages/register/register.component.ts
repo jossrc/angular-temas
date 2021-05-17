@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidatorService } from '../../../shared/validator/validator.service';
 import {
   FormGroup,
   FormBuilder,
   Validators,
-  FormControl,
 } from '@angular/forms';
 
 @Component({
@@ -12,35 +12,31 @@ import {
   styles: [],
 })
 export class RegisterComponent implements OnInit {
-  //TODO: Temporal
-  fullNamePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  emailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-
-  isValidUsername(control: FormControl) {
-    const value: string | null = control.value?.trim().toLowerCase();
-    if (value === 'strider') {
-      // Sí hay error - objeto
-      return {
-        isStrider: true,
-      };
-    }
-    // No hay error
-    return null;
-  }
-
   myForm: FormGroup = this.formBuilder.group({
     txtName: [
       '',
-      [Validators.required, Validators.pattern(this.fullNamePattern)],
+      [
+        Validators.required,
+        Validators.pattern(this.validatorService.fullNamePattern),
+      ],
     ],
-    txtUsername: ['', [Validators.required, this.isValidUsername]],
+    txtUsername: [
+      '',
+      [Validators.required, this.validatorService.isValidUsername],
+    ],
     txtEmail: [
       '',
-      [Validators.required, Validators.pattern(this.emailPattern)],
+      [
+        Validators.required,
+        Validators.pattern(this.validatorService.emailPattern),
+      ],
     ],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private validatorService: ValidatorService
+  ) {}
 
   ngOnInit(): void {
     // Estableciendo valores por defecto
@@ -56,11 +52,11 @@ export class RegisterComponent implements OnInit {
   }
 
   submitForm() {
-    if (this.myForm.valid) {
-      console.log(this.myForm.value);
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
       return;
     }
 
-    this.myForm.markAllAsTouched();
+    console.log(this.myForm.value);
   }
 }
