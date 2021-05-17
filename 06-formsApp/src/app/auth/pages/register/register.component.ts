@@ -54,6 +54,8 @@ export class RegisterComponent implements OnInit {
       txtName: 'Jose Robles',
       txtUsername: 'jossrc',
       txtEmail: 'test1@test.com',
+      txtPassword: '123456',
+      txtPassword2: '123456'
     });
   }
 

@@ -111,7 +111,13 @@
 
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-primary float-end">Crear</button>
+          <button
+            [disabled]="myForm.pending"
+            type="submit"
+            class="btn btn-primary float-end"
+          >
+            Crear
+          </button>
         </div>
       </div>
     </form>
@@ -122,6 +128,12 @@
   <div class="col">
     <span> <b>Valid</b> </span>
     <pre>      {{ myForm.valid }}</pre>
+
+    <span> <b>Status</b> </span>
+    <pre>      {{ myForm.status }}</pre>
+
+    <span> <b>Pending</b> </span>
+    <pre>      {{ myForm.pending }}</pre>
 
     <span> <b>Form errors</b> </span>
     <pre>{{ myForm.errors | json }}</pre>
