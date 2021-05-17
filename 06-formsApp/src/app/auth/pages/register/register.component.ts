@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidatorService } from '../../../shared/validator/validator.service';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -12,26 +8,35 @@ import {
   styles: [],
 })
 export class RegisterComponent implements OnInit {
-  myForm: FormGroup = this.formBuilder.group({
-    txtName: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(this.validatorService.fullNamePattern),
+  myForm: FormGroup = this.formBuilder.group(
+    {
+      txtName: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(this.validatorService.fullNamePattern),
+        ],
       ],
-    ],
-    txtUsername: [
-      '',
-      [Validators.required, this.validatorService.isValidUsername],
-    ],
-    txtEmail: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(this.validatorService.emailPattern),
+      txtUsername: [
+        '',
+        [Validators.required, this.validatorService.isValidUsername],
       ],
-    ],
-  });
+      txtEmail: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(this.validatorService.emailPattern),
+        ],
+      ],
+      txtPassword: ['', [Validators.required, Validators.minLength(6)]],
+      txtPassword2: ['', [Validators.required]],
+    },
+    {
+      validators: [
+        this.validatorService.compareFields('txtPassword', 'txtPassword2'),
+      ],
+    }
+  );
 
   constructor(
     private formBuilder: FormBuilder,

@@ -76,7 +76,14 @@
             class="form-control"
             placeholder="Clave del usuario"
             id="txtPassword"
+            formControlName="txtPassword"
           />
+          <span
+            *ngIf="isValidField('txtPassword')"
+            class="form-text text-danger"
+          >
+            La contraseña debe de ser mayor de 6 caracteres.
+          </span>
         </div>
       </div>
 
@@ -91,7 +98,14 @@
             class="form-control"
             placeholder="Confirma tu clave"
             id="txtPassword2"
+            formControlName="txtPassword2"
           />
+          <span
+            *ngIf="isValidField('txtPassword2')"
+            class="form-text text-danger"
+          >
+            Las contraseñas deben de ser iguales
+          </span>
         </div>
       </div>
 
@@ -109,6 +123,9 @@
     <span> <b>Valid</b> </span>
     <pre>      {{ myForm.valid }}</pre>
 
+    <span> <b>Form errors</b> </span>
+    <pre>{{ myForm.errors | json }}</pre>
+
     <span><b>Value</b></span>
     <pre>{{ myForm.value | json }}</pre>
 
@@ -120,5 +137,11 @@
 
     <span><b>Email</b></span>
     <pre>{{ myForm.controls.txtEmail.errors | json }}</pre>
+
+    <span><b>Password</b></span>
+    <pre>{{ myForm.controls.txtPassword.errors | json }}</pre>
+
+    <span><b>Repetir Password</b></span>
+    <pre>{{ myForm.controls.txtPassword2.errors | json }}</pre>
   </div>
 </div>
