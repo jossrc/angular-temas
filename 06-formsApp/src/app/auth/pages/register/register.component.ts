@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidatorService } from '../../../shared/validator/validator.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { EmailValidatorService } from '../../../shared/validator/email-validator.service';
 
 @Component({
   selector: 'app-register',
@@ -27,6 +28,9 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.pattern(this.validatorService.emailPattern),
         ],
+        [
+          this.emailValidator
+        ]
       ],
       txtPassword: ['', [Validators.required, Validators.minLength(6)]],
       txtPassword2: ['', [Validators.required]],
@@ -40,7 +44,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private validatorService: ValidatorService
+    private validatorService: ValidatorService,
+    private emailValidator: EmailValidatorService
   ) {}
 
   ngOnInit(): void {
