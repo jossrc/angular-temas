@@ -59,14 +59,8 @@
             placeholder="Email del usuario"
             id="txtEmail"
           />
-          <span *ngIf="emailRequired()" class="form-text text-danger">
-            El correo es obligatorio
-          </span>
-          <span *ngIf="emailFormat()" class="form-text text-danger">
-            El valor no tiene formato de correo
-          </span>
-          <span *ngIf="emailRepeated()" class="form-text text-danger">
-            El correo electrónico ya fue tomado
+          <span *ngIf="isValidField('txtEmail')" class="form-text text-danger">
+            {{ emailErrorMsg }}
           </span>
         </div>
       </div>

@@ -40,6 +40,20 @@ export class RegisterComponent implements OnInit {
     }
   );
 
+  get emailErrorMsg(): string {
+    const errors = this.myForm.get('txtEmail')?.errors;
+
+    if (errors?.required) {
+      return 'Email es obligatorio';
+    } else if (errors?.pattern) {
+      return 'El valor ingresado no tiene formato de correo';
+    } else if (errors?.existsEmail) {
+      return 'El email ya fue tomado';
+    }
+
+    return '';
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private validatorService: ValidatorService,
@@ -61,33 +75,12 @@ export class RegisterComponent implements OnInit {
     return this.myForm.get(field)?.invalid && this.myForm.get(field)?.touched;
   }
 
-  emailRequired() {
-    return (
-      this.myForm.get('txtEmail')?.errors?.required &&
-      this.myForm.get('txtEmail')?.touched
-    );
-  }
-
-  emailFormat() {
-    return (
-      this.myForm.get('txtEmail')?.errors?.pattern &&
-      this.myForm.get('txtEmail')?.touched
-    );
-  }
-
-  emailRepeated() {
-    return (
-      this.myForm.get('txtEmail')?.errors?.existsEmail &&
-      this.myForm.get('txtEmail')?.touched
-    );
-  }
-
   submitForm() {
     if (this.myForm.invalid) {
       this.myForm.markAllAsTouched();
       return;
     }
 
-    console.log(this.myForm.value);
+    console.log('Submit', this.myForm.value);
   }
 }
