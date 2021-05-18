@@ -28,9 +28,7 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.pattern(this.validatorService.emailPattern),
         ],
-        [
-          this.emailValidator
-        ]
+        [this.emailValidator],
       ],
       txtPassword: ['', [Validators.required, Validators.minLength(6)]],
       txtPassword2: ['', [Validators.required]],
@@ -55,12 +53,33 @@ export class RegisterComponent implements OnInit {
       txtUsername: 'jossrc',
       txtEmail: 'test1@test.com',
       txtPassword: '123456',
-      txtPassword2: '123456'
+      txtPassword2: '123456',
     });
   }
 
   isValidField(field: string) {
     return this.myForm.get(field)?.invalid && this.myForm.get(field)?.touched;
+  }
+
+  emailRequired() {
+    return (
+      this.myForm.get('txtEmail')?.errors?.required &&
+      this.myForm.get('txtEmail')?.touched
+    );
+  }
+
+  emailFormat() {
+    return (
+      this.myForm.get('txtEmail')?.errors?.pattern &&
+      this.myForm.get('txtEmail')?.touched
+    );
+  }
+
+  emailRepeated() {
+    return (
+      this.myForm.get('txtEmail')?.errors?.existsEmail &&
+      this.myForm.get('txtEmail')?.touched
+    );
   }
 
   submitForm() {
