@@ -9,6 +9,11 @@ import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit,
 export class Pagina1Component implements OnInit, OnChanges, DoCheck ,AfterContentInit,
   AfterContentChecked, AfterViewInit,AfterViewChecked, OnDestroy {
 
+    nombre: string = 'Jose'
+
+    // Se multiplican los hooks cada vez que se utiliza varias veces el componente
+    // en una misma página
+
   /*
     En el constructor hacemos inyección de dependencias que el
     componente necesita o si necesitamos una inicialización
@@ -54,4 +59,9 @@ export class Pagina1Component implements OnInit, OnChanges, DoCheck ,AfterConten
   ngOnDestroy(): void {
     console.log('ngOnDestroy()');
   }
+
+  guardar(): void {
+    console.log('guardado');
+  }
+
 }
