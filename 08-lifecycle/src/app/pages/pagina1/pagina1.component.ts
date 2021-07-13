@@ -1,4 +1,5 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pagina1',
@@ -10,6 +11,8 @@ export class Pagina1Component implements OnInit, OnChanges, DoCheck ,AfterConten
   AfterContentChecked, AfterViewInit,AfterViewChecked, OnDestroy {
 
     nombre: string = 'Jose'
+    segundos: number = 0;
+    timerSubscription!: Subscription;
 
     // Se multiplican los hooks cada vez que se utiliza varias veces el componente
     // en una misma página
@@ -30,6 +33,9 @@ export class Pagina1Component implements OnInit, OnChanges, DoCheck ,AfterConten
   */
   ngOnInit(): void {
     console.log('ngOnInit()');
+    this.timerSubscription = interval(1000).subscribe((i) => {
+      this.segundos = i
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -58,6 +64,8 @@ export class Pagina1Component implements OnInit, OnChanges, DoCheck ,AfterConten
 
   ngOnDestroy(): void {
     console.log('ngOnDestroy()');
+    this.timerSubscription.unsubscribe();
+    console.log('Timer Limpiado');
   }
 
   guardar(): void {
