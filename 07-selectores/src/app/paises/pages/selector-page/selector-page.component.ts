@@ -9,10 +9,12 @@ import { CountrySmall } from '../../interfaces/paises.interface';
 })
 export class SelectorPageComponent implements OnInit {
 
+  estaCargando: boolean = false;
+
   miFormulario: FormGroup = this.formBuilder.group({
     region: ['', Validators.required],
     pais: ['', Validators.required],
-    frontera: ['', Validators.required]
+    frontera: [ '', Validators.required]
   });
 
   // Llenar selectores
@@ -32,9 +34,11 @@ export class SelectorPageComponent implements OnInit {
       tap( (_) => {
         // Cada vez que el continente cambia, resetea el país
         this.miFormulario.get('pais')?.reset('');
+        this.estaCargando = true;
       }),
       switchMap( (region: string) => this.paisesService.getPaisesPorRegion(region) ))
     .subscribe(paises => {
+      this.estaCargando = false;
       this.paises = paises
     });
 
@@ -44,10 +48,12 @@ export class SelectorPageComponent implements OnInit {
       tap( ()=> {
         this.fronteras = [];
         this.miFormulario.get('frontera')?.reset('');
+        this.estaCargando = true;
       }),
       switchMap( codigo => this.paisesService.getPaisPorCodigo(codigo) )
     )
     .subscribe( pais => {
+      this.estaCargando = false;
       this.fronteras = pais?.borders || [];
     })
 
