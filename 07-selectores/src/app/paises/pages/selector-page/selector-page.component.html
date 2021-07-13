@@ -1,4 +1,4 @@
-<h1 class="mt-5">selector-page works!</h1>
+<h1 class="mt-5">Selectores Anidados</h1>
 <hr>
 
 <form [formGroup]="miFormulario" (ngSubmit)="guardar()">
@@ -20,6 +20,17 @@
       <select class="form-control" formControlName="pais">
         <option value="" selected>--- Seleccione País ---</option>
         <option *ngFor="let pais of paises" [value]="pais.alpha3Code "> {{ pais.name }} </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Fronteras -->
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Frontera</label>
+      <select class="form-control" formControlName="frontera">
+        <option value="" selected>--- Seleccione el país fronterizo ---</option>
+        <option *ngFor="let frontera of fronteras" [value]=" ">  </option>
       </select>
     </div>
   </div>

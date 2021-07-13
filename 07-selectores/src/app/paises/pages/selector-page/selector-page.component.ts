@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { switchMap, tap } from 'rxjs/operators';
 import { PaisesService } from '../../services/paises.service';
-import { Country } from '../../interfaces/paises.interface';
+import { CountrySmall } from '../../interfaces/paises.interface';
 @Component({
   selector: 'app-selector-page',
   templateUrl: './selector-page.component.html',
@@ -12,11 +12,13 @@ export class SelectorPageComponent implements OnInit {
   miFormulario: FormGroup = this.formBuilder.group({
     region: ['', Validators.required],
     pais: ['', Validators.required],
+    frontera: ['', Validators.required]
   });
 
   // Llenar selectores
   regiones: string[] = [];
-  paises: Country[] = [];
+  paises: CountrySmall[] = [];
+  fronteras = [];
 
   constructor( private formBuilder: FormBuilder, private paisesService: PaisesService ) { }
 
@@ -35,6 +37,12 @@ export class SelectorPageComponent implements OnInit {
     .subscribe(paises => {
       this.paises = paises
     });
+
+    // Detectar cuando se cambia el país
+    this.miFormulario.get('pais')?.valueChanges
+    .subscribe( codigoPais => {
+      console.log(codigoPais);
+    })
 
   }
 
