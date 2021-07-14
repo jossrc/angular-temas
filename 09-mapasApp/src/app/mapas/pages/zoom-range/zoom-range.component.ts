@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 
 @Component({
@@ -26,7 +26,7 @@ import * as mapboxgl from 'mapbox-gl';
     `,
   ],
 })
-export class ZoomRangeComponent implements AfterViewInit {
+export class ZoomRangeComponent implements AfterViewInit, OnDestroy {
   // Obtenemos el elemento <div #mapa> por su referencia
   @ViewChild('mapa')
   mapaContainer!: ElementRef;
@@ -34,6 +34,9 @@ export class ZoomRangeComponent implements AfterViewInit {
   miMapa!: mapboxgl.Map;
 
   zoomLevel: number = 17;
+
+  // Latitud y Longitud (tupla)
+  center: [number, number] = [-77.0296675277514, -12.120856900175406];
 
   constructor() {}
 
@@ -46,7 +49,7 @@ export class ZoomRangeComponent implements AfterViewInit {
       // El container también puede recibir un elemento html (tener cuidado con el ID)
       container: this.mapaContainer.nativeElement,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-77.0296675277514, -12.120856900175406],
+      center: this.center,
       zoom: this.zoomLevel,
     });
 
@@ -63,6 +66,15 @@ export class ZoomRangeComponent implements AfterViewInit {
         this.miMapa.zoomTo(19);
       }
     });
+
+    // Evento de movimiento del mapa
+    this.miMapa.on('move', (event: any) => {
+      // Actualizar la latitud y longitud
+      this.center = [
+        event.target.getCenter().lat,
+        event.target.getCenter().lng,
+      ];
+    });
   }
 
   zoomOut(): void {
@@ -77,7 +89,18 @@ export class ZoomRangeComponent implements AfterViewInit {
 
   // Cambiar el zoom con el input range
   zoomCambio(valor: string): void {
-    this.miMapa.zoomTo(Number(valor))
+    this.miMapa.zoomTo(Number(valor));
+  }
+
+  /**
+   * Cuando se trabaja con eventos se debe
+   * destruir cuando no se utiliza para que no exista
+   * fuga de información
+   **/
+  ngOnDestroy(): void {
+    this.miMapa.off('zoom', () => {});
+    this.miMapa.off('zoomend', () => {});
+    this.miMapa.off('move', () => {});
   }
 
 }
