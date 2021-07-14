@@ -28,7 +28,7 @@ export class FullScreenComponent implements OnInit {
       container: 'mapa',
       style: 'mapbox://styles/mapbox/streets-v11',
       // Si queremos establecer una posición inicial
-      center: [ -77.0296675277514, -12.120856900175406 ], // [lat, lng]
+      center: [ -77.0296675277514, -12.120856900175406 ], // [lng, lat]
       zoom: 17 // Se necesita del zoom para que no se vea muy alejado
     });
   }

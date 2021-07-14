@@ -35,7 +35,7 @@ export class ZoomRangeComponent implements AfterViewInit, OnDestroy {
 
   zoomLevel: number = 17;
 
-  // Latitud y Longitud (tupla)
+  // Longitud y Latitud (tupla)
   center: [number, number] = [-77.0296675277514, -12.120856900175406];
 
   constructor() {}
@@ -71,8 +71,8 @@ export class ZoomRangeComponent implements AfterViewInit, OnDestroy {
     this.miMapa.on('move', (event: any) => {
       // Actualizar la latitud y longitud
       this.center = [
-        event.target.getCenter().lat,
         event.target.getCenter().lng,
+        event.target.getCenter().lat,
       ];
     });
   }
