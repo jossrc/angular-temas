@@ -67,28 +67,33 @@ export class MarcadoresComponent implements AfterViewInit {
    * Método para crear y agregar un marcador en el centro del mapa
    */
   agregarMarcador() {
-
     // random color
-    const color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));
+    const color = '#xxxxxx'.replace(/x/g, (y) =>
+      ((Math.random() * 16) | 0).toString(16)
+    );
 
     const nuevoMarcador = new mapboxgl.Marker({
       draggable: true,
-      color
+      color,
     })
-    .setLngLat(this.center)
-    .addTo(this.miMapa);
+      .setLngLat(this.center)
+      .addTo(this.miMapa);
 
     // Creamos una nueva interface para almacenar el color y el marker
     // ya que actualmente no existe un getColor() en el marcador
     this.marcadores.push({
       color,
-      marker: nuevoMarcador
+      marker: nuevoMarcador,
     });
-
   }
 
-  irMarcador() {
-
+  /**
+   * Método para movernos al marcador
+   **/
+  irMarcador(marker: mapboxgl.Marker) {
+    this.miMapa.flyTo({
+      center: marker.getLngLat(),
+    })
   }
 
 }
