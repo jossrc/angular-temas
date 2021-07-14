@@ -10,6 +10,17 @@ import * as mapboxgl from 'mapbox-gl';
         width: 100%;
         height: 100%;
       }
+
+      .list-group {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 99;
+      }
+
+      li {
+        cursor: pointer;
+      }
     `,
   ],
 })
@@ -34,11 +45,35 @@ export class MarcadoresComponent implements AfterViewInit {
       zoom: this.zoomLevel,
     });
 
-    // Creando un marcador, estableciendo su posición y agregandolo al mapa
-    // El Marker recibe como parámetro opcional un objeto cuya propiedad element
-    // nos permite cambiar el elemento del marcador (por ejemplo, una etiqueta o una imagen)
+    /*
+    Creando un marcador, estableciendo su posición y agregandolo al mapa
+    El Marker recibe como parámetro opcional un objeto cuya propiedad element
+    nos permite cambiar el elemento del marcador (por ejemplo, una etiqueta o una imagen)
     const marker = new mapboxgl.Marker()
       .setLngLat(this.center)
       .addTo(this.miMapa);
+    */
   }
+
+  /**
+   * Método para crear y agregar un marcador en el centro del mapa
+   */
+  agregarMarcador() {
+
+    // random color
+    const color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));
+
+    const marker = new mapboxgl.Marker({
+      draggable: true,
+      color
+    })
+    .setLngLat(this.center)
+    .addTo(this.miMapa);
+  }
+
+
+  irMarcador() {
+
+  }
+
 }
