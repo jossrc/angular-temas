@@ -12,6 +12,7 @@ import * as mapboxgl from 'mapbox-gl';
       }
 
       .row {
+        width: 400px;
         background-color: white;
         border-radius: 15px;
         position: fixed;
@@ -26,7 +27,6 @@ import * as mapboxgl from 'mapbox-gl';
   ],
 })
 export class ZoomRangeComponent implements AfterViewInit {
-
   // Obtenemos el elemento <div #mapa> por su referencia
   @ViewChild('mapa')
   mapaContainer!: ElementRef;
@@ -57,6 +57,12 @@ export class ZoomRangeComponent implements AfterViewInit {
       this.zoomLevel = zoomActual;
     });
 
+    // Evento cuando termine el zoom
+    this.miMapa.on('zoomend', () => {
+      if (this.miMapa.getZoom() > 19) {
+        this.miMapa.zoomTo(19);
+      }
+    });
   }
 
   zoomOut(): void {
@@ -67,6 +73,11 @@ export class ZoomRangeComponent implements AfterViewInit {
   zoomIn(): void {
     // Acercar
     this.miMapa.zoomIn();
+  }
+
+  // Cambiar el zoom con el input range
+  zoomCambio(valor: string): void {
+    this.miMapa.zoomTo(Number(valor))
   }
 
 }
