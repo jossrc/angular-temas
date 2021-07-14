@@ -49,18 +49,24 @@ export class ZoomRangeComponent implements AfterViewInit {
       center: [-77.0296675277514, -12.120856900175406],
       zoom: this.zoomLevel,
     });
+
+    // Evento de zoom
+    this.miMapa.on('zoom', () => {
+      // Actualizar el nivel de zoom
+      const zoomActual = this.miMapa.getZoom();
+      this.zoomLevel = zoomActual;
+    });
+
   }
 
   zoomOut(): void {
     // Alejar
     this.miMapa.zoomOut();
-    this.zoomLevel = this.miMapa.getZoom();
   }
 
   zoomIn(): void {
     // Acercar
     this.miMapa.zoomIn();
-    this.zoomLevel = this.miMapa.getZoom();
   }
 
 }
