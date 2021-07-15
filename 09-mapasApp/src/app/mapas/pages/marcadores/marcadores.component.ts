@@ -91,6 +91,10 @@ export class MarcadoresComponent implements AfterViewInit {
     });
 
     this.guardarMarcadoresLocalStorage();
+
+    nuevoMarcador.on('dragend', () => {
+      this.guardarMarcadoresLocalStorage();
+    });
   }
 
   /**
@@ -137,6 +141,16 @@ export class MarcadoresComponent implements AfterViewInit {
         marker: newMarker,
         color: m.color,
       });
+
+      newMarker.on('dragend', () => {
+        this.guardarMarcadoresLocalStorage();
+      });
     });
+  }
+
+  borrarMarcador(index: number) {
+    this.marcadores[index].marker?.remove();
+    this.marcadores.splice(index, 1);
+    this.guardarMarcadoresLocalStorage();
   }
 }
