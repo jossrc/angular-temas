@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 
@@ -10,26 +10,23 @@ import { Label } from 'ng2-charts';
 })
 export class GraficaBarraComponent implements OnInit {
 
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-  };
+  @Input()
+  horizontal: boolean = false;
 
+  @Input()
   public barChartLabels: Label[] = [
-    '2020',
+    /*'2020',
     '2021',
     '2022',
     '2023',
     '2024',
     '2025',
-    '2026',
+    '2026',*/
   ];
 
-  public barChartType: ChartType = 'bar';
-
-  public barChartLegend = true;
-
+  @Input()
   public barChartData: ChartDataSets[] = [
-    {
+    /*{
       data: [65, 59, 80, 81, 56, 55, 40],
       label: 'Series A',
       backgroundColor: '#DB8AC5',
@@ -46,12 +43,27 @@ export class GraficaBarraComponent implements OnInit {
       label: 'Series C',
       backgroundColor: '#93DBC3',
       hoverBackgroundColor: 'green',
-    },
+    },*/
   ];
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+
+  public barChartType: ChartType = 'bar';
+
+  public barChartLegend = true;
 
   constructor() { }
 
+  /**
+   * Usamos en ngOnInit para establecer el cambio
+   * cuando se ha generando el componente
+   **/
   ngOnInit(): void {
+    if (this.horizontal) {
+      this.barChartType = 'horizontalBar';
+    }
   }
 
 }
