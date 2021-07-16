@@ -10,24 +10,16 @@ import { Label } from 'ng2-charts';
 export class BarrasComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
-
-    scales: { xAxes: [{}], yAxes: [{}] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      },
-    },
   };
 
   public barChartLabels: Label[] = [
-    '2006',
-    '2007',
-    '2008',
-    '2009',
-    '2010',
-    '2011',
-    '2012',
+    '2020',
+    '2021',
+    '2022',
+    '2023',
+    '2024',
+    '2025',
+    '2026',
   ];
 
   public barChartType: ChartType = 'bar';
@@ -35,8 +27,24 @@ export class BarrasComponent implements OnInit {
   public barChartLegend = true;
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
+    {
+      data: [65, 59, 80, 81, 56, 55, 40],
+      label: 'Series A',
+      backgroundColor: '#DB8AC5',
+      hoverBackgroundColor: 'pink',
+    },
+    {
+      data: [28, 48, 40, 19, 86, 27, 90],
+      label: 'Series B',
+      backgroundColor: '#7783F0',
+      hoverBackgroundColor: 'blue',
+    },
+    {
+      data: [8, 38, 70, 59, 66, 80, 100],
+      label: 'Series C',
+      backgroundColor: '#93DBC3',
+      hoverBackgroundColor: 'green',
+    },
   ];
 
   constructor() {}
@@ -44,14 +52,16 @@ export class BarrasComponent implements OnInit {
   ngOnInit(): void {}
 
   randomize() {
-    this.barChartData[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      Math.random() * 100,
-      45,
-      Math.random() * 100,
-      40,
-    ];
+    this.barChartData.forEach((bar) => {
+      bar.data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+      ];
+    });
   }
 }
