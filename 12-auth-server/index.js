@@ -16,6 +16,9 @@ app.use(express.json()); // -> implementar antes que las rutas
 // La ruta /api/auth se concatenará con la dirección en los routes
 app.use('/api/auth', require('./routes/auth'));
 
+// Directorio público
+app.use(express.static('public'))
+
 // Escuchando en el puerto 4000 y usando variables de entorno
 app.listen(process.env.PORT, () => {
   console.log(`Servidor corriendo en el puerto ${process.env.PORT}`);
