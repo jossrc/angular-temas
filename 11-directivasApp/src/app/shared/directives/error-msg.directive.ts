@@ -4,7 +4,6 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
   selector: '[error-msg]',
 })
 export class ErrorMsgDirective implements OnInit {
-
   private _color: string = '#dc3545';
   private _mensaje: string = 'Este campo es necesario';
 
@@ -30,12 +29,11 @@ export class ErrorMsgDirective implements OnInit {
     this.setMensaje();
   }
 
-  setColor():void {
+  setColor(): void {
     this.htmlElement.nativeElement.style.color = this._color;
   }
 
-  setMensaje():void {
+  setMensaje(): void {
     this.htmlElement.nativeElement.textContent = this._mensaje;
   }
-
 }
