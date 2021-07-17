@@ -16,7 +16,8 @@
     <div class="col-auto">
       <span
         error-msg
-        mensaje="Debe de ingresar este campo"
+        [mensaje]="texto1"
+        [color]="color"
         class="form-text"
         *ngIf="tieneError('txtNombre')"
         >Este mensaje será reemplazado por la directiva</span
@@ -25,7 +26,8 @@
   </div>
   <div class="row mt-3">
     <div class="col">
-      <button class="btn btn-primary">Guardar</button>
+      <button (click)="cambiarTexto()" class="btn btn-primary">Guardar</button>
+      <button (click)="cambiarColor()" class="btn btn-success mx-2">Cambiar color</button>
     </div>
   </div>
 </form>

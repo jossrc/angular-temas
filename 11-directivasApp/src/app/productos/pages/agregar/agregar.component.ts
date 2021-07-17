@@ -7,6 +7,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styles: [],
 })
 export class AgregarComponent {
+
+  texto1: string = "Debe de ingresar este campo";
+  color: string = "purple";
+
   miFormulario: FormGroup = this.formBuilder.group({
     txtNombre: ['', Validators.required],
   });
@@ -33,6 +37,14 @@ export class AgregarComponent {
       }
     }
     return clases;
+  }
+
+  cambiarTexto() {
+    this.texto1 = Math.random().toString();
+  }
+
+  cambiarColor() {
+    this.color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));;
   }
 
 }
