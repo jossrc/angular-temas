@@ -1,6 +1,7 @@
 // Agregar tipado en javascript (hacks)
 const { response } = require('express');
 const Usuario = require('../models/Usuario');
+const bcrypt = require('bcryptjs');
 
 const crearUsuario = async (req, res = response) => {
   // Cuando está parseado el body podemos trabajar con json
@@ -21,8 +22,12 @@ const crearUsuario = async (req, res = response) => {
     usuario = new Usuario(req.body);
 
     // Encriptar (Hashear) la contraseña
+    const salt = bcrypt.genSaltSync();
+    usuario.password = bcrypt.hashSync(password, salt);
 
-    // Generar el JWT
+    // Generar el JWT (será enviado para que entre al sistema
+    // después de registrarse - aunque es opcional - 
+    // recomendado en el login)
 
     // Crear usuario de DB
     await usuario.save();
