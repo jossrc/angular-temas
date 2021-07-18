@@ -57,14 +57,13 @@ const loginUsuario = async (req, res = response) => {
   const { email, password } = req.body;
 
   try {
-    
-    const dbUser = await Usuario.findOne({email});
+    const dbUser = await Usuario.findOne({ email });
 
     if (!dbUser) {
       return res.status(400).json({
         ok: false,
-        msg: 'El correo no existe (Usuario no encontrado)'
-      })
+        msg: 'El correo no existe (Usuario no encontrado)',
+      });
     }
 
     // Confirmar si el password hace match
@@ -73,8 +72,8 @@ const loginUsuario = async (req, res = response) => {
     if (!validPassword) {
       return res.status(400).json({
         ok: false,
-        msg: 'Password incorrecto'
-      })
+        msg: 'Password incorrecto',
+      });
     }
 
     // Generar el JWT
@@ -86,8 +85,7 @@ const loginUsuario = async (req, res = response) => {
       uid: dbUser.id, // el id es el uid que genera mongo
       name: dbUser.name,
       token,
-    })
-
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -95,13 +93,21 @@ const loginUsuario = async (req, res = response) => {
       msg: 'Por favor hable con el administrador',
     });
   }
-
 };
 
-const revalidar = (req, res) => {
+const revalidar = async (req, res = response) => {
+  // Obtenemos el uid y el name de la request (enviada
+  // por el middleware validar-jwt)
+  const { uid, name } = req;
+
+  // Generamos un nuevo token
+  const nuevoToken = await generarJWT(uid, name);
+
   return res.json({
     ok: true,
-    msg: 'Renew',
+    uid,
+    name,
+    token: nuevoToken
   });
 };
 

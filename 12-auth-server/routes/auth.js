@@ -6,6 +6,7 @@ const {
   revalidar,
 } = require('../controllers/auth');
 const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-jwt');
 
 // Usando el Router para crear rutas
 const router = Router();
@@ -31,7 +32,7 @@ router.post(
       .withMessage('La contraseña es obligatoria')
       .isLength({ min: 6 })
       .withMessage('La contraseña es mínimo de 6 caracteres'),
-      validarCampos
+    validarCampos,
   ],
   crearUsuario
 );
@@ -44,13 +45,13 @@ router.post(
     // Validando campo email y password (express-validator) método 2
     check('email', 'El email es obligatorio').isEmail(),
     check('password', 'La contraseña es obligatoria').isLength({ min: 6 }),
-    validarCampos
+    validarCampos,
   ],
   loginUsuario
 );
 
 // Ruta para validar y revalidar token
-router.get('/renew', revalidar);
+router.get('/renew', [validarJWT], revalidar);
 
 // Exportando el router
 module.exports = router;
