@@ -53,13 +53,49 @@ const crearUsuario = async (req, res = response) => {
   }
 };
 
-const loginUsuario = (req, res = response) => {
+const loginUsuario = async (req, res = response) => {
   const { email, password } = req.body;
 
-  return res.json({
-    ok: true,
-    msg: 'Login de usuario /',
-  });
+  try {
+    
+    const dbUser = await Usuario.findOne({email});
+
+    if (!dbUser) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'El correo no existe (Usuario no encontrado)'
+      })
+    }
+
+    // Confirmar si el password hace match
+    const validPassword = bcrypt.compareSync(password, dbUser.password);
+
+    if (!validPassword) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'Password incorrecto'
+      })
+    }
+
+    // Generar el JWT
+    const token = await generarJWT(dbUser.id, dbUser.name);
+
+    // Respuesta del servicio
+    return res.status(200).json({
+      ok: true,
+      uid: dbUser.id, // el id es el uid que genera mongo
+      name: dbUser.name,
+      token,
+    })
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      msg: 'Por favor hable con el administrador',
+    });
+  }
+
 };
 
 const revalidar = (req, res) => {
