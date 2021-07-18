@@ -5,6 +5,7 @@ const {
   loginUsuario,
   revalidar,
 } = require('../controllers/auth');
+const { validarCampos } = require('../middlewares/validar-campos');
 
 // Usando el Router para crear rutas
 const router = Router();
@@ -30,6 +31,7 @@ router.post(
       .withMessage('La contraseña es obligatoria')
       .isLength({ min: 6 })
       .withMessage('La contraseña es mínimo de 6 caracteres'),
+      validarCampos
   ],
   crearUsuario
 );
@@ -42,6 +44,7 @@ router.post(
     // Validando campo email y password (express-validator) método 2
     check('email', 'El email es obligatorio').isEmail(),
     check('password', 'La contraseña es obligatoria').isLength({ min: 6 }),
+    validarCampos
   ],
   loginUsuario
 );
