@@ -39,20 +39,32 @@ export class AuthService {
       }),
       // Retornando true si la respuesta es 200
       map((resp) => resp.ok), // retorna un boolean ya no una respuesta
-      // Retornando false si la respuesta es 40X
+      // Retornando false si la respuesta es 40X - el 40X siempre da error
       catchError(
         (err: HttpErrorResponse): Observable<string> => of(err.error.msg)
       )
     );
   }
 
-  validarToken() {
+  validarToken(): Observable<boolean> {
     const url = `${this.baseUrl}/auth/renew`;
     const headers = new HttpHeaders().set(
       'x-token',
       localStorage.getItem('token') || ''
     ); // Mandamos el header personalizado
 
-    return this.http.get(url, { headers });
+    return this.http.get<AuthResponse>(url, { headers }).pipe(
+      map((resp) => {
+        // Cuando viene la respuesta exitosa (20X)
+        localStorage.setItem('token', resp.token!);
+        this._usuario = {
+          name: resp.name!,
+          uid: resp.uid!,
+        };
+
+        return resp.ok;
+      }),
+      catchError((err: HttpErrorResponse) => of(false))
+    );
   }
 }
