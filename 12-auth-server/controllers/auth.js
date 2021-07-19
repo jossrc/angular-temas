@@ -39,6 +39,7 @@ const crearUsuario = async (req, res = response) => {
       ok: true,
       uid: usuario.id, // el id es el uid que genera mongo
       name,
+      email,
       token,
       msg: 'Usuario creado exitosamente',
     });
@@ -84,6 +85,7 @@ const loginUsuario = async (req, res = response) => {
       ok: true,
       uid: dbUser.id, // el id es el uid que genera mongo
       name: dbUser.name,
+      email: dbUser.email,
       token,
     });
   } catch (error) {
@@ -98,15 +100,19 @@ const loginUsuario = async (req, res = response) => {
 const revalidar = async (req, res = response) => {
   // Obtenemos el uid y el name de la request (enviada
   // por el middleware validar-jwt)
-  const { uid, name } = req;
+  const { uid } = req;
+
+  // Leer la base de datos
+  const dbUser = await Usuario.findById(uid);
 
   // Generamos un nuevo token
-  const nuevoToken = await generarJWT(uid, name);
+  const nuevoToken = await generarJWT(uid, dbUser.name);
 
   return res.json({
     ok: true,
     uid,
-    name,
+    name: dbUser.name,
+    email: dbUser.email,
     token: nuevoToken
   });
 };
