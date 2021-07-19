@@ -1,16 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
+  private emailPattern: RegExp =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-  constructor() { }
+  miFormulario: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) {}
+
+  register() {
+    console.log(this.miFormulario.value);
   }
-
 }

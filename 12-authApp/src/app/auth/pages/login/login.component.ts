@@ -1,16 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  private emailPattern: RegExp =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-  constructor() { }
+  miFormulario: FormGroup = this.formBuilder.group({
+    // El nombre de los debe ser parecido al que se espera recibir en el backend
+    email: ['test1@test.com', [Validators.required, Validators.pattern(this.emailPattern)]],
+    password: ['123456', [Validators.required, Validators.minLength(6)]],
+  });
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) {}
+
+  login() {
+    console.log(this.miFormulario.value);
+    console.log(this.miFormulario.valid);
   }
-
 }
