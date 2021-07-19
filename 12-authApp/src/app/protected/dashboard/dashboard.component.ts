@@ -20,6 +20,10 @@ import { AuthService } from '../../auth/services/auth.service';
 })
 export class DashboardComponent {
 
+  /*
+    Cada vez que se va a esta página el guard ejecuta el servicio
+    que valida el token y obtiene un usuario para su uso.
+  */
   get usuario() {
     return this.authService.usuario;
   }
