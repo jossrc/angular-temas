@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -26,6 +30,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(url, body).pipe(
       tap((resp) => {
         if (resp.ok) {
+          localStorage.setItem('token', resp.token!);
           this._usuario = {
             name: resp.name!,
             uid: resp.uid!,
@@ -39,5 +44,15 @@ export class AuthService {
         (err: HttpErrorResponse): Observable<string> => of(err.error.msg)
       )
     );
+  }
+
+  validarToken() {
+    const url = `${this.baseUrl}/auth/renew`;
+    const headers = new HttpHeaders().set(
+      'x-token',
+      localStorage.getItem('token') || ''
+    ); // Mandamos el header personalizado
+
+    return this.http.get(url, { headers });
   }
 }
