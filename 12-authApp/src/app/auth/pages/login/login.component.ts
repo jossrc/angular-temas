@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,15 @@ export class LoginComponent {
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
   miFormulario: FormGroup = this.formBuilder.group({
-    // El nombre de los debe ser parecido al que se espera recibir en el backend
+    // El nombre de los campos debe ser parecido al que se espera recibir en el backend
     email: ['test1@test.com', [Validators.required, Validators.pattern(this.emailPattern)]],
     password: ['123456', [Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   login() {
     console.log(this.miFormulario.value);
-    console.log(this.miFormulario.valid);
+    this.router.navigateByUrl('/dashboard')
   }
 }
