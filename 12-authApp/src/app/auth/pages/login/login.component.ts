@@ -28,11 +28,11 @@ export class LoginComponent {
   ) {}
 
   login() {
-    console.log(this.miFormulario.value);
-    // this.router.navigateByUrl('/dashboard');
     const { email, password } = this.miFormulario.value;
-    this.authService.login(email, password).subscribe((resp) => {
-      console.log(resp);
+    this.authService.login(email, password).subscribe((ok) => {
+      if (ok) {
+        this.router.navigateByUrl('/dashboard');
+      }
     });
   }
 }
