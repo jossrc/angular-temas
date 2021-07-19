@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -19,7 +19,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<boolean> {
+  login(email: string, password: string): Observable<boolean | string> {
     const url = `${this.baseUrl}/auth`;
     const body = { email, password };
 
@@ -35,7 +35,9 @@ export class AuthService {
       // Retornando true si la respuesta es 200
       map((resp) => resp.ok), // retorna un boolean ya no una respuesta
       // Retornando false si la respuesta es 40X
-      catchError((err) => of(false))
+      catchError(
+        (err: HttpErrorResponse): Observable<string> => of(err.error.msg)
+      )
     );
   }
 }
